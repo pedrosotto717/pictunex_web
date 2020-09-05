@@ -1,0 +1,9 @@
+*.jpeg
+*.jpg
+*.png
+*.map
+*.txt
+*.svg
+/font
+/img
+/css
