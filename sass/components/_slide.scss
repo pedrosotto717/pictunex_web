@@ -1,0 +1,48 @@
+//===================================================
+//						Slide
+//===================================================
+
+.slide{
+    grid-column: 1 / -1;
+    position: relative;
+
+    display: flex;
+    flex-wrap: nowrap;
+   	overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    &__item{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+
+        visibility: hidden;
+        z-index: 10;
+
+        background-size: cover;
+        background-position: center center;
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+        transition: clip-path 1.45s ease 0.1s;
+
+        @for $i from 1 through 5 {
+			&:nth-child(#{$i}) {
+                background-image: url('../img/img_slider#{$i}.jpg');
+			}
+        }
+        
+        &.is-active--prev{
+            z-index: 20;
+            visibility: visible;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        &.is-active{
+            z-index: 30;
+            visibility: visible;
+            will-change: clip-path;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+    }
+}
