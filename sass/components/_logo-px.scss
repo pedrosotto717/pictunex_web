@@ -1,0 +1,48 @@
+.logo-px {
+	$width-logo: 768px;
+	$height-logo:  528px;
+
+	width: 100%;
+	height: 100%;
+	max-width: 60px;
+
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(../img/Logo-px-svg.svg);
+	box-shadow: 0 0 5px 0 $enf-color;
+
+	&.icon{
+		min-width: $width-logo / 15;
+		min-height: $height-logo/ 15;
+		@include mq_next(xl){
+			min-width: $width-logo / 13;
+			min-height: $height-logo/ 13;
+		}
+	}
+
+
+	&.main{
+		/*min-width: 64px;*/
+		/*min-height: 44px;*/
+		min-width: $width-logo / 10;
+		min-height: $height-logo/ 10;
+		border: 2px solid #000;
+
+		@include mq_next(xl){
+			min-width: $width-logo / 8;
+			min-height: $height-logo/ 8;
+		}
+
+		@include mq(md){
+			min-width: $width-logo / 12;
+			min-height: $height-logo/ 12;
+		}	
+
+		/*@include mq(sm){
+			min-width: $width-logo / 12;
+			min-height: $height-logo / 12;
+		}	*/
+	}
+}

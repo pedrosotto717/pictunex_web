@@ -1,0 +1,23 @@
+//====================================================
+//                      Button-main
+//====================================================
+%btn--active{
+    color: #fff;
+    background-color: darken($enf-color, 10%);
+}
+
+.btn{
+    padding: 12px 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    transition: all $transition-global;
+    border-radius: 1px;
+
+    &-main{
+        @extend .btn;
+        &.btn--active{
+            @extend %btn--active;
+        }
+    }
+}
+

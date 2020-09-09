@@ -102,7 +102,7 @@ nav,
 section {
   display: block;
 }
-body {
+body, a, p{
   line-height: 1;
 }
 ol,
@@ -127,7 +127,7 @@ table {
 
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: $font-size;
   font-family: $font-main;
   scroll-behavior: smooth;
 }

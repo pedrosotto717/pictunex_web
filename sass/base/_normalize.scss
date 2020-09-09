@@ -58,6 +58,10 @@ textarea {
 }
 
 input {
+  border: none;
+  outline: none;
+
+
   &[type="search"] {
     -webkit-appearance: textfield;
     -moz-box-sizing: content-box;
@@ -75,4 +79,13 @@ input {
     box-sizing: border-box;
     padding: 0;
   }
+}
+
+button,
+input,
+button[type="reset"],
+  button[type="submit"]{
+  border: none;
+  outline: none;
+  box-shadow: none;
 }

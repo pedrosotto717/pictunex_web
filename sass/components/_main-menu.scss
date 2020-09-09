@@ -1,0 +1,121 @@
+/* -------------------- menu-main ---------------- */
+.menu-main{
+
+    .nav-bar{
+        flex: 0 0 35%;
+        max-width: 500px;
+        min-width: 320px;
+        display: block;
+
+        @include mq(lg){
+            flex: 1 1 38%;
+            max-width: 400px;
+        }
+
+
+        ul{
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+
+            .nav__item{
+                display: inline-flex;
+                min-width: 60px;
+                a{
+                    color: #fff;
+                    font-size: 1.3em;
+                    font-family: $font-main;
+                    font-weight: normal;
+                    
+                    @include mq(md){
+                        font-size: 1em;
+                    }
+                    
+                    @include mq_next(md){
+                        font-size: 1.1em;
+                    }
+
+                    @include mq_next(xl){
+                        font-size: 1.3em;
+                    }
+                    
+                    &:hover{
+                        @extend .btn--active;
+                    }
+                }
+            }
+        }
+
+        .search-box{
+            display: none;
+        }
+    }//end .nav-bar
+
+    
+    .menu-box-search{
+        @extend .search-box;
+        display: none;
+    }
+
+
+    @include mq(md){ // menu de navegacion en modo tableta
+        transform: translateX(105%);
+        flex: 1 1 100%;
+        position: fixed;
+        width: 100vw;
+        max-width: 100vw;
+        min-width: 100vw;
+        min-height: 100vh;
+        height: auto;
+        background-color: transparentize(#0d0d0d, 0.3%);
+        z-index: 440;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        margin: 0;
+        transition: all $transition-global;
+
+        .menu-box-search{
+            display: flex;
+            flex: 0 0 100%;
+            padding: 0 10px;
+            position: relative;
+            /*top: 150px;*/
+            max-width: calc(100% - 50px);
+        }
+
+
+        .nav-bar{
+            ul{
+                flex: 0 0 100%;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                min-width: 100%;
+                min-height: 100%;
+                margin-bottom: 50px;
+
+
+                .nav__item{
+                    display: flex;
+                    min-width: 60px;
+
+                    a{
+                        &:hover{
+                            @extend .btn--active;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.is-active-menu{
+            transform: translateX(0%);
+        }
+    }
+}

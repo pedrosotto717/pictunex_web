@@ -1,0 +1,218 @@
+//===============================================
+/*                   Header                    */
+//===============================================
+
+.header{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: 80px minmax(400px,60vh);
+    grid-auto-rows: 0px;
+    align-items: center;
+
+    &::before{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        z-index: 200;
+        
+        background-color: transparentize(#000, 0.8%);
+    }
+
+    &.is-search{
+        grid-template-rows: 80px 300px;
+    }
+
+    @include mq(md){
+        grid-template-rows: 100px minmax(200px,50vh);
+    }
+    
+    @include mq_next(xl){
+        grid-template-rows: 100px minmax(400px,60vh);
+    }
+} 
+
+
+.header header{
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    height: 80px;
+    max-height: 100px;
+    width: 100%;
+    position: sticky;    
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    // background-color: transparentize(#000, 0.7%);
+    
+    font-size: 16px;
+    
+    &.is-search{
+        @include is-search();
+    }
+    
+    .search-bar{
+        flex: 1 1 60%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+        width: 100%;
+
+        .search-box-nav{
+            visibility: hidden;
+            opacity: 0;
+            width: 100%;
+            flex: 1 1 100%;
+            @extend .search-box;
+        }
+
+        @include mq_next(lg){
+            flex: 11 100%;
+        }
+    }
+
+    @include mq(md){
+        @include is-search();
+        .search-bar{
+            flex: 1 1 100%;
+            .search-box-nav{
+                flex: 1 1 100%;
+                margin: 0 15px;
+            }
+        }
+    } 
+
+    @include mq(900px){
+        .search-bar{
+            .search-box-nav{
+                display: none;
+            }
+        }
+    } 
+
+
+    .btn-menu{
+        display: none;
+        color: #000;
+        font-size: 1em;
+        font-family: $font-main;
+        font-weight: normal;
+        background-color: darken(#fff,5%);
+        z-index: 450;
+
+        &:hover{
+            @extend %btn--active;
+        }
+
+        @include mq(md){
+            display: block;
+        }
+    }
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: auto;
+    color: #fff;
+    font-weight: normal;
+    font-family: $font-main;
+    font-size: 2em;
+    line-height: 1;
+    flex: 0 0 40%;
+    max-width: 450px;
+
+    &-px{
+        margin-right: 20px;
+    }
+
+    @include mq_next(1300px){
+        font-size: 3em;
+    }
+    
+    @include mq(lg){
+        flex: 0 0 auto;
+
+        &__title{
+            display: none;
+        }
+
+        &-px{
+            margin-right: 0px;
+        }
+    }
+    
+}
+
+
+.header-center{
+    grid-row: 2 / -1;
+    grid-column: 3 / -3;
+    z-index: 300;
+    position: relative;
+    color: #fff;
+    padding: 20px 0;
+
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    /*background-color: transparentize(#fff, 0.7%);*/
+
+
+    h1.slogan{
+        font-family: $font-main;
+        font-size: 3em;
+        @include mq_next(1220){
+            font-size: 3em;
+        }
+
+        @include mq(md){
+            font-size: 2.4em;
+        }
+    }
+
+    .slogan{
+        font-weight: bolder;
+        font-family: $font-aux;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        width: 100%;
+        @include mq(md){
+            font-size: 1.2em;
+        }
+    }
+
+    
+    @include mq(md){
+        padding: 20px 15px;
+        grid-column: 2 / -2;
+    }
+
+    @include mq(xs){
+        padding: 20px 15px;
+        grid-column: 1 / -1;
+    }
+
+    @include mq_next(xl){
+        grid-column: 4 / -4;
+    }
+    /*h3.slogan::after{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: $enf-color;
+        margin-top: 5px;
+    }*/
+}

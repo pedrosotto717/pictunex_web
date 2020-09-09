@@ -4,6 +4,9 @@
 *.map
 *.txt
 *.svg
-/font
+*.ico
+*.txt
+prepros.config
+/fonts
 /img
 /css

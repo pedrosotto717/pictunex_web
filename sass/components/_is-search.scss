@@ -1,0 +1,32 @@
+@mixin is-search(){
+    // background-color: #232a34;
+    // background-color: #28282d;
+    // background-color: #232326;
+    background-color: #1b2129;
+    position: fixed;
+    
+    top: 0;
+    z-index: 400;
+    width: 101%;
+    margin-left: -5px;
+    margin-right: -5px;
+    flex: 1 1 100%;
+
+    .nav-bar{
+        flex: 0 0 30%;
+        min-width: 400px;
+        padding: 0 10px;
+        @include mq_next(lg){
+            flex: 0 0 25%;
+        }
+    }
+
+    .search-bar{
+        .search-box{
+            flex: 1 1 100%;
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
