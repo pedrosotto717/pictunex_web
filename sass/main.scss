@@ -1,6 +1,6 @@
 // -- Utilities
 @import 'utilities/variables';
-@import 'utilities/mixins';
+@import 'utilities/mq';
 
 // -- Base
 @import 'base/reset';
@@ -12,9 +12,10 @@
 @import 'components/slide';
 @import 'components/button-main';
 @import 'components/logo-px';
-@import 'components/input-search';
+@import 'components/search-box';
 @import 'components/is-search';
 @import 'components/main-menu';
+@import 'components/gallery';
 
 
 // -- Layout

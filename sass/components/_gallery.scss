@@ -1,0 +1,149 @@
+// 1
+
+.masonry-layout{
+    border: 10px solid #000;
+
+    $columns: 4;
+    $minRow: 75px;
+    $maxRow: auto /*($minRow*2.2)*/;
+    --columns: 4;
+    --g-gap: 2em;
+    
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns),1fr);
+    grid-auto-rows: minmax($minRow,$maxRow); // cambio minmax($minRow,auto); 
+    grid-gap: var(--g-gap);
+
+    @include mq(lg){
+        --columns: 3;
+        --g-gap: 1em;
+    }
+
+    @include mq(sm){
+        --columns: 2;
+        --g-gap: 1em;
+    }
+
+    @include mq(xs){
+        --columns: 1;
+        --g-gap: 1em;
+    }
+
+    
+    @for $i from 1 through $columns{
+        &.columns-#{$i}{
+            --columns: #{$i};
+        }
+    }
+
+    .masonry-item{
+        position: absolute; // cambio pos-absolute
+
+
+        &:nth-child(4n){
+            order: 5;
+        }
+
+        &:nth-child(2n+3){
+            order: 1;
+        }
+
+      /*  &:nth-child(7n){
+            grid-column-end: span 2;
+        }
+*/
+        figure{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            img{
+                transform: translate3d(0,0,200px);
+                min-height: 100%;
+                min-width: 100%;
+                object-fit: cover;
+                overflow: hidden;
+            }
+        }
+    }
+
+
+    //@for $var from 1 through 12 {
+    //    .mi-row-#{$var}{
+    //        grid-row-end: span #{$var};
+    //        min-height: $minRow * $var;
+    //       // /*max-height: $minRow * $var;*/
+    //    }
+    //}
+}
+
+
+// 2
+/* 
+.masonry-layout{
+	width: 100%;
+	height: 100%;
+	line-height: 0.5;
+	column-gap: 1em;
+	// padding: 15px;
+    columns: 5;
+
+    @include mq(lg){
+        columns: 4;
+    }
+
+    @include mq(md){
+        columns: 3;
+    }
+
+    @include mq(sm){
+        columns: 2;
+    }
+
+    @include mq(xs){
+        columns: 2;
+    }
+    
+    .masonry-item{
+        margin-bottom: 1em;
+        display: inline-block;
+
+
+        figure{
+            min-width: 100%;
+            min-height: 100%;
+
+            img{
+                max-width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+} */
+
+// 3
+// .masonry-layout{
+//     position: relative;
+//     display: grid;
+//     height: auto;
+//     // grid-auto-flow: dense;
+//     grid-template-columns: repeat(4,auto);
+//     grid-gap: 1.5em;
+//     // grid-template-rows: repeat(auto-fill, minmax(50px,auto));
+//     // grid-auto-rows: minmax(50px,auto);
+
+
+//     // justify-items: ;
+//     // align-items: start;
+
+//     .masonry-item{
+//         position: relative;
+//         border: 1px solid black;
+
+//         figure img{
+//             position: relative;
+//             height: 100%;
+//             width: 100%;
+//         }
+//     }
+// }

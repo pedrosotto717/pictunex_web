@@ -1,16 +1,15 @@
 .logo-px {
 	$width-logo: 768px;
 	$height-logo:  528px;
-
 	width: 100%;
 	height: 100%;
 	max-width: 60px;
 
+	background: url('./../img/logo-px.svg');
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url(../img/Logo-px-svg.svg);
 	box-shadow: 0 0 5px 0 $enf-color;
 
 	&.icon{
@@ -31,8 +30,8 @@
 		border: 2px solid #000;
 
 		@include mq_next(xl){
-			min-width: $width-logo / 8;
-			min-height: $height-logo/ 8;
+			min-width: $width-logo / 9;
+			min-height: $height-logo/ 9;
 		}
 
 		@include mq(md){

@@ -2,7 +2,7 @@
 .menu-main{
 
     .nav-bar{
-        flex: 0 0 35%;
+        flex: 0 0.45%;
         max-width: 500px;
         min-width: 320px;
         display: block;
@@ -52,14 +52,16 @@
     }//end .nav-bar
 
     
-    .menu-box-search{
+    .search-box--menu{
         @extend .search-box;
         display: none;
+        transition: clip-path 0s 0s;
     }
 
 
     @include mq(md){ // menu de navegacion en modo tableta
-        transform: translateX(105%);
+        transform: translateX(100%);
+        /*clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);*/
         flex: 1 1 100%;
         position: fixed;
         width: 100vw;
@@ -67,7 +69,7 @@
         min-width: 100vw;
         min-height: 100vh;
         height: auto;
-        background-color: transparentize(#0d0d0d, 0.3%);
+        background-color: transparentize(#0d0d0d, 0.15%);
         z-index: 440;
         top: 0;
         left: 0;
@@ -77,15 +79,18 @@
         align-content: center;
         flex-wrap: wrap;
         margin: 0;
-        transition: all $transition-global;
+        transition: all 0.3s linear 0.3s;
 
-        .menu-box-search{
+        .search-box--menu{
+            clip-path: circle(5px at left center);
             display: flex;
             flex: 0 0 100%;
             padding: 0 10px;
             position: relative;
             /*top: 150px;*/
             max-width: calc(100% - 50px);
+            transition: clip-path 0.3s linear 0s;
+
         }
 
 
@@ -104,18 +109,31 @@
                 .nav__item{
                     display: flex;
                     min-width: 60px;
-
-                    a{
-                        &:hover{
-                            @extend .btn--active;
-                        }
-                    }
+                    clip-path: circle(1%);
+                    transition: clip-path 0.05s linear 0s;
                 }
             }
         }
 
+
         &.is-active-menu{
-            transform: translateX(0%);
+            /*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);*/
+            transform: translateX(0);
+            .nav-bar ul .nav__item {
+                transition: clip-path 0.8s ease 0.55s;
+                clip-path: circle(100%);
+                a{
+                    background-color: $enf-color-overlay;
+                    &.btn--active, &:hover{
+                        background-color: transparentize($enf-color-overlay,0.8%);
+                    }
+                }
+            }
+
+            .search-box--menu{
+                clip-path: circle(100%);
+                transition: clip-path 0.8s ease 0.55s;
+            }
         }
-    }
+    } // end media query (md)
 }

@@ -3,6 +3,8 @@
 //===================================================
 
 .slide{
+    $num-slides: 7;
+
     grid-row: 1 / -1;
     grid-column: 1 / -1;
     position: relative;
@@ -29,7 +31,7 @@
         clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
         transition: clip-path 1.3s ease-in-out 0.1s;
 
-        @for $i from 1 through 5 {
+        @for $i from 1 through $num-slides {
 			&:nth-child(#{$i}) {
                 background-image: url('../img/img_slider#{$i}.jpg');
 			}

@@ -42,7 +42,7 @@
 			}
 	
 			.search-input:focus ~ button[type="submit"]:hover{
-				background-color: darken($enf-color, 10%);
+				background-color: $enf-color-overlay;
 			}
 	
 		}
@@ -103,7 +103,7 @@
 	
 		&:hover{
 			color: #fff;
-			background-color: darken($enf-color, 10%);
+			background-color: $enf-color-overlay;
 		}
 	}
 

@@ -3,7 +3,7 @@
 //====================================================
 %btn--active{
     color: #fff;
-    background-color: darken($enf-color, 10%);
+    background-color: $enf-color-overlay;
 }
 
 .btn{
