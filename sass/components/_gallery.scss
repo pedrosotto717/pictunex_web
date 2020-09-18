@@ -20,11 +20,12 @@
 
     @include mq(md){
         --columns: 2;
-        --g-gap: 0.2em;
+        --g-gap: 0.3em;
     }
-
+    
     @include mq(xs){
         --columns: 1;
+        --g-gap: 0.8em;
     }
 
     
