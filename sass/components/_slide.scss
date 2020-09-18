@@ -33,7 +33,7 @@
 
         @for $i from 1 through $num-slides {
 			&:nth-child(#{$i}) {
-                background-image: url('../img/img_slider#{$i}.jpg');
+                background-image: url('../../static/img/img_slider#{$i}.jpg');
 			}
         }
         

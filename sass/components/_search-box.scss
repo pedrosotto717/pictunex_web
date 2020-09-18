@@ -23,17 +23,17 @@
 
 	@include mq_next(md){
 		&.transparent{
-			box-shadow: 0 0 5px 0 #000;
+			box-shadow: 0 0 1px 0 #000;
 	
 			.search-input{
 				transition: background-color $transition-global;
-				background-color: rgba(255,255,255,0.8);
+				background-color: rgba(255,255,255,0.2);
 			}
 	
 			button[type="reset"],
 			button[type="submit"]{
 				transition: background-color $transition-global;
-				background-color: rgba(255,255,255,0.8);
+				background-color: rgba(255,255,255,0.2);
 			}
 	
 			.search-input:focus,

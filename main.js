@@ -1,4 +1,4 @@
-import slidePX from "./js/slide_px.js"
+import slidePX from "./assets/js/modules/slide-px.js"
 
 const slide = new slidePX({
   container: ".slide",

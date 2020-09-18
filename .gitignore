@@ -6,7 +6,15 @@
 *.svg
 *.ico
 *.txt
+*.ttf
+*.otf
+*.eot
+*.woff
+*.woff2
+*2.js
+*2.scss
 prepros.config
 /fonts
 /img
 /css
+assets/css
