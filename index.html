@@ -7,25 +7,26 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
 	<title>Pictunex | Pixele your World</title>
-	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<link rel="stylesheet" href="assets/css/main.css?000023">
+	<!-- <link rel="stylesheet" href="assets/css/font-awesome.css"> -->
+	<link rel="stylesheet" href="./assets/css/font-awesome.css">
 	<link rel="logo" href="static/img/logo-px.svg">
 </head>
 
 <body>
-	<div class="header is-search-h-n"> <!-- is-search-h -->
+	<div class="header is-search-h--n"> <!-- is-search-h -->
 		<!-- header  -->
-		<header class="is-search-n"> <!-- is-search-h -->
+		<header class="is-search--n"> <!-- is-search-h -->
 			<div class="search-bar">
 
 				<!-- logo PICTUNEX -->
 				<div class="logo">
-					<span href="static/img/logo-px.svg" class="logo-px main"></span>
+					<span class="logo-px main"></span>
 					<span class="logo__title">Pictunex</span> 
 				</div>
 
 				<!-- Search Box -->
-				<form class="search-box--nav">
+				<form id="uno" class="formSearch search-box--nav">
 					<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
 					<button type="reset"><span class="fa fa-times"></span></button>
 					<button type="submit"><span class="fa fa-search"></span></button>
@@ -33,9 +34,8 @@
 			</div>
 
 			<!-- botton Menu -->
-			<button class="btn-menu btn">
-				Menu
-				<span class="line"></span>
+			<button class="icon btn-menu">
+				<span class="menu-icon"></span>
 			</button>
 
 			<!-- Menu -->
@@ -51,7 +51,7 @@
 				</nav>
 
 				<!-- search-box -> menu-main  -->
-				<form class="search-box--menu">
+				<form id="dos" class="formSearch search-box--menu">
 					<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
 					<button type="reset"><span class="fa fa-times"></span></button>
 					<button type="submit"><span class="fa fa-search"></span></button>
@@ -65,7 +65,7 @@
 			<h3 id="slogan--machine" class="slogan">Pixele your Life... Pixele your World</h3>
 			<!-- Search Box -->
 
-			<form class="search-box transparent">
+			<form id="tres" class="formSearch search-box transparent">
 				<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
 				<button type="reset"><span class="fa fa-times"></span></button>
 				<button type="submit"><span class="fa fa-search"></span></button>
@@ -87,239 +87,65 @@
 	<div class="container-px">
 		<main>
 
-		<div class="filter-imgs">
-			<select>
-				<option>Naturaleza</option>
-			</select>
+		<div class="filter-imgs container-px">
+			<ul>
+				
+			</ul>
 		</div>
 
-		<section class="pictunex-gallery masonry-layout " >
-			<!-- <a href="">
-				<figure>
-					<img src="" alt="">
-				</figure>
-			</a> -->
-
-			<div class="masonry-item" data-id="1">
-				<figure>
-					<img src="./_img/1.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="2">
-				<figure>
-					<img src="./_img/2.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="3">
-				<figure>
-					<img src="./_img/3.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="4">
-				<figure>
-					<img src="./_img/4.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="5">
-				<figure>
-					<img src="./_img/5.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="6">
-				<figure>
-					<img src="./_img/6.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="7">
-				<figure>
-					<img src="./_img/7.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="8">
-				<figure>
-					<img src="./_img/8.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="9">
-				<figure>
-					<img src="./_img/9.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="10">
-				<figure>
-					<img src="./_img/10.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="11">
-				<figure>
-					<img src="./_img/11.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="12">
-				<figure>
-					<img src="./_img/12.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="13">
-				<figure>
-					<img src="./_img/13.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="14">
-				<figure>
-					<img src="./_img/14.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="15">
-				<figure>
-					<img src="./_img/15.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="16">
-				<figure>
-					<img src="./_img/16.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="17">
-				<figure>
-					<img src="./_img/17.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="18">
-				<figure>
-					<img src="./_img/18.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="19">
-				<figure>
-					<img src="./_img/19.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="20">
-				<figure>
-					<img src="./_img/20.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="21">
-				<figure>
-					<img src="./_img/21.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="22">
-				<figure>
-					<img src="./_img/22.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-			<div class="masonry-item" data-id="23">
-				<figure>
-					<img src="./_img/23.jpg" alt="">
-					<figcaption></figcaption>
-				</figure>
-			</div>
-
-
-
-
-			
-
+		<!-- #pictunex-gallery -->
+		<section class="pictunex-gallery masonry-layout">
 		</section>
-		
+		<!-- #end pictunex-gallery -->
 
+		<div class="modal">
+			<button class="btn modal-close">
+				<span class="fa fa-times"></span>
+			</button>
+			<section class="modal-gallery">
 		
+				<div class="view-box-img">
+					<img src="./_img/12.jpg" alt="" class="current-img">
+				</div>
 			
+				<div class="info-img">
+					<div class="user-author">
+						<span class="fa fa-user"></span>
+						<span class="nickname">pedrosotto717</span>
+					</div>
+
+					<div class="download-img">
+						<a class="btn-main btn--active btn-icon" href="#" download target="_blank" rel="nofollow">
+							<span>Download</span>
+							<span class="download-icon icon"></span>
+						</a>
+					</div>
+				</div>
+
+				<div class="categories">
+					<ul>
+						
+					</ul>
+				</div>
+
+				<div class="controllers-img">
+					<button class="prev-img">
+						<span class="fa fa-chevron-left"></span>
+					</button>
+			
+					<button class="next-img">
+						<span class="fa fa-chevron-right"></span>
+					</button>
+				</div>
+			
+			</section>
+		</div>
+	
 		</main>
 	</div>
 
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-
-
-
-
-
-<!-- 
-	<div class="container">
-		<div class="slide">
-            <div class="slide__item is-active"></div>
-            <div class="slide__item"></div>
-            <div class="slide__item"></div>
-            <div class="slide__item"></div>
-            <div class="slide__item"></div>
-        </div>
-	</div> -->
 	<script src= "./assets/js/modules/masonry-px.js"></script>
+	<script src= "./assets/js/modules/light-box.js"></script>
 	<script src="main.js" type="module"></script>
 </body>
 

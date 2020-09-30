@@ -112,3 +112,15 @@
 	}
 
 }
+
+.no-coincidence{
+	width: 100%;
+	padding: 20px;
+	p{
+		font-family: $font-second;
+		font-size: 2em;
+		span{
+			color: $enf-color-overlay;
+		}
+	}
+}

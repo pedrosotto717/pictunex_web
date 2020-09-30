@@ -10,8 +10,16 @@
 
     display: grid;
     grid-template-columns: repeat(var(--columns),1fr);
-    grid-auto-rows: minmax($minRow,$maxRow); // cambio minmax($minRow,auto); 
+    grid-auto-rows: minmax($minRow,$maxRow);
     grid-gap: var(--g-gap);
+
+    &.active{
+        /*grid-auto-rows: 75px;*/
+        .masonry-item{
+            transform: scale(1);
+        }
+    }
+
 
     @include mq(lg){
         --columns: 3;
@@ -36,7 +44,9 @@
     }
 
     .masonry-item{
-        position: absolute; // cambio pos-absolute
+        position: absolute;
+        transform: scale(0);
+        box-shadow: 0 0 2px 0 #000;
 
         &:first-child figure img,
         &:nth-child(3n) figure img{
@@ -51,12 +61,87 @@
             min-width: 95%;
         }
 
+        
+        &:hover{
+            figure{
+                &::before{
+                    opacity: 1;
+                }
+            }
+
+            .masonry-details{
+
+                header.user{
+                    transition: all 0.3s ease 0.3s;
+                    transform: translateY(0);
+                }
+
+                footer{
+                    transition: all 0.3s ease 0.3s;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+
         figure{
             width: 100%;
             height: 100%;
             overflow: hidden;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+
+            &::before{
+                content: "";
+                display: block;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: rgba(0,0,0,0.4);
+                /*transform: translateY(100%);*/
+                transition: all $transition-global;
+                opacity: 0;
+            }
+
+
+            .masonry-details{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                /*background-color: transparentize($color: #000000, $amount: 0.5);*/
+                color: #fff;
+                // overflow: hidden;
+                
+                header{
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    padding: 10px;
+                    transition: all 0.3s ease 0s;
+                    transform: translateY(-100%);
+                }
+                
+                footer{
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    transition: all 0.3s ease 0s;
+                    transform: translateY(100%);
+                    display: inline-flex;
+                    justify-content: space-between;
+                    span{
+                        margin: 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
             img{
                 min-height: 100%;
                 min-width: 102%;

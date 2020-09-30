@@ -43,18 +43,21 @@
     height: 80px;
     max-height: 100px;
     width: 100%;
+    min-width: 100vw;
     position: sticky;    
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 200;
-    // background-color: transparentize(#000, 0.7%);
-    
     font-size: 16px;
     
     &.is-search{
         @include is-search();
+    }
+
+    @include mq(md){
+        max-height: 75px;
     }
     
     .search-bar{
@@ -99,17 +102,9 @@
 
 
     .btn-menu{
+        margin: 10px;
         display: none;
-        color: #000;
-        font-size: 1em;
-        font-family: $font-main;
-        font-weight: normal;
-        background-color: darken(#fff,5%);
         z-index: 450;
-
-        &:hover{
-            @extend %btn--active;
-        }
 
         @include mq(md){
             display: block;
@@ -126,7 +121,7 @@
     color: #fff;
     font-weight: normal;
     font-family: $font-main;
-    font-size: 2em;
+    font-size: 2.7em;
     line-height: 1;
     flex: 0 0 40%;
     max-width: 450px;
@@ -135,8 +130,8 @@
         margin-right: 20px;
     }
 
-    @include mq_next(1300px){
-        font-size: 3em;
+    @include mq(1300px){
+        font-size: 2em;
     }
     
     @include mq(lg){
@@ -173,7 +168,7 @@
     h1.slogan--title{
         font-family: $font-main;
         font-size: 3em;
-        @include mq_next(1220){
+        @include mq_next(1220px){
             font-size: 3em;
         }
 

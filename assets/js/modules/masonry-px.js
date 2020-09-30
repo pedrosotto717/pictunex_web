@@ -1,11 +1,12 @@
 function msr (containerSelector, itemsSelector, GRheight) {
     const items = document.querySelectorAll(itemsSelector),
-            imgItems = [...document.querySelectorAll('.masonry-item img')]
+          container = document.querySelector(containerSelector),
+          imgItems = [...document.querySelectorAll('.masonry-item img')]
 
     for (let i = 0; i < items.length; i++) {
 
         const H = imgItems[i].height 
-        // console.log(H,Math.round((H) / GRheight),Math.round( ((H / 2) / GRheight) ),W,items[i])
+        // console.log(H,Math.round((H) / GRheight),Math.round( ((H / 2) / GRheight) ),items[i])
 
         let hFinal = 1
 
@@ -21,9 +22,15 @@ function msr (containerSelector, itemsSelector, GRheight) {
 
         items[i].style.gridRowEnd = 'span ' + hFinal;
         items[i].style.position = 'relative'
+
+        container.classList.add("active")
+
+        setTimeout(()=>{
+            // container.style.gridAutoRows = "75px";
+        },1000);
     }
 }
 
-addEventListener("load", ev => {
-    msr('.masonry-layout', '.masonry-item', 100)
-})	
+// addEventListener("load", ev => {
+//     msr('.masonry-layout', '.masonry-item', 100)
+// })	

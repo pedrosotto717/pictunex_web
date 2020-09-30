@@ -12,6 +12,8 @@
     flex-wrap: nowrap;
     transition: all $transition-global;
     border-radius: 1px;
+    cursor: pointer;
+    background: transparent;
 
     &-main{
         @extend .btn;
@@ -21,3 +23,16 @@
     }
 }
 
+//====================================================
+//                      Button-icon
+//====================================================
+
+.btn-icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    outline: none;
+    background: transparent;
+}

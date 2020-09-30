@@ -9,6 +9,7 @@
 
 
 // -- Components
+@import 'components/icons';
 @import 'components/slide';
 @import 'components/button-main';
 @import 'components/logo-px';
@@ -16,8 +17,11 @@
 @import 'components/is-search';
 @import 'components/main-menu';
 @import 'components/gallery';
+@import 'components/modal-view-box-gallery';
 
 
 // -- Layout
 @import 'layout/layout.util';
 @import 'layout/header';
+
+@import 'views/index';

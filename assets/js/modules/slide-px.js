@@ -17,7 +17,6 @@ export default class SlidePX{
 
 
   run(){
-    // Interval
     this.animationInterval = setInterval(() => {
       if(this.ready){
         this.ready = false

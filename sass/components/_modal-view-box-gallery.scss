@@ -1,0 +1,250 @@
+.modal{
+	/*display: none;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-width: 100vw;
+	min-height: 100vh;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 849;
+	overflow-y: auto;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.25s linear 0.3s;
+	
+	&.active{
+		transition: all 0.35s linear 0s;
+		opacity: 1;
+		visibility: visible;
+		.modal-gallery{
+			transition: all 0.4s ease 0.5s;
+			transform: translateY(0);
+		}
+	}
+
+	&-close{
+		color: #fff;
+		font-size: 1.2em;
+		position: absolute;
+		top: 10px;
+		right: 20px;	
+	}
+}
+
+
+.modal-gallery{
+	position: relative;
+	top: 5vh;
+	left: 0;
+	right: 0;
+	width: calc(90vw - 50px);
+	min-height: 600px;
+	height: 80vh;
+	max-height: 1000px;
+	background-color: rgb(255, 255, 255);
+	z-index: 850;
+	margin: 50px auto;
+	/*overflow: hidden;*/
+	transform: translateY(-150%);
+	transition: all 0.3s ease 0s;
+
+	
+
+	display: grid;
+	grid-template-columns: 0.5fr 2fr 0.5fr;
+	grid-template-rows: 60px minmax(300px,1fr) 50px;
+	grid-template-areas: "info info info"
+						 "none img none1"
+						 "categories categories categories";
+	grid-auto-rows: unset;
+	grid-auto-columns: unset;
+	grid-gap: 5px;
+	font-family: $font-second;
+
+	@include mq(md){
+		grid-template-columns: 30px 1fr 30px;
+		grid-template-rows: 50px minmax(300px,1fr) 40px;
+		width: 92vw;
+	}
+
+	@include mq(lg){
+		top: 20px;
+		min-height: 400px;
+	}
+
+
+
+	.view-box-img{
+		grid-area: img;
+		display: flex;
+		justify-content: center;
+		-ms-align-items: center;
+		align-items: center;
+		z-index: 860;
+		overflow: hidden;
+
+		img{
+			width: auto;
+			height: auto;
+			max-height: 100%;
+			max-width: 100%;
+			object-fit: cover;
+			overflow: hidden;
+		}
+	}
+
+	.info-img{
+		grid-area: info;
+		padding: 10px;
+
+		display: flex;
+		justify-content: space-between;
+		-ms-align-items: center;
+		align-items: center;
+
+		.user-author{
+			flex: 0 0 auto;
+			padding: 5px;
+			margin-top: 5px;
+			margin-left: 5px;
+			span{
+				margin: 2px;
+			}
+
+			.username{
+				font-family: $font-second;
+			}
+		}
+
+		.download-img{
+			flex: 0 0 auto;
+			height: 100%;
+			max-height: 100%;
+			padding: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 5px;
+			margin-right: 5px;
+
+			a{
+				max-height: 40px;
+				height: 40px;
+				padding: 0 !important;
+				transition: $transition-global;
+
+				&:hover{
+                    background-color: darken($enf-color-overlay,0.5%) !important;
+				}
+
+				span{
+					margin: 0;
+					color: #fff;
+					line-height: 0;
+					margin-top: 5px;
+					padding: 5px; 
+					padding-left: 10px;
+					font-size: $font-aux;
+				}
+
+				.download-icon{
+					background: rgba(0,0,0,.3);
+					padding: 5px 8px;
+					height: 100%;
+					margin: 0;
+				}
+			}
+		}
+
+		
+	}
+
+	.categories{
+		grid-area: categories;
+		background-color: #fff;
+		
+
+		ul{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			-ms-align-items: center;
+			align-items: center;
+
+			li{
+				display: inline-flex;
+				margin: 0 10px;
+				a{
+					font-family: $font-second;
+					color: #000;
+					padding: 5px;
+					background-color: transparentize($enf-color-overlay, 0.8%);
+					font-size: 1.2em;
+					@include mq(lg){
+						font-size: 1em;
+					}
+				}
+
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	.controllers-img{
+		grid-row: 2 / span 1;
+		grid-column: 1 / -1;
+
+
+		background: transparent;
+		display: flex;
+		justify-content: space-between;
+		-ms-align-items: center;
+		align-items: center;
+		padding: 10px 50px;
+
+		@include mq(md){
+			padding: 0;
+
+			button{
+				padding: 0;
+				span{
+					height: auto;
+					width: auto;
+					padding: 0px;
+					position: relative;
+				}
+			}
+		}
+
+		button{
+			position: relative;
+			background: transparent;
+			span{
+				height: 55px;
+				width: 40px;
+				display: inline-flex;
+				line-height: 0;
+				padding: 15px 10px;
+				font-size: 2em;
+				justify-content: center;
+				-ms-align-items: center;
+				align-items: center;
+				transition: all $transition-global;
+
+				&:hover{
+					background-color: $enf-color-overlay;
+				}
+
+				@include mq(lg){
+					font-size: 1.1em;
+				}
+			}
+		}
+
+	}
+}
+

@@ -1,0 +1,30 @@
+.icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.menu-icon{
+    display: inline;
+    &::before{
+        content: "";
+        display: flex;
+        background-image: url("../../static/img/menu.svg");
+        min-width: $icon-w * 1.8;
+        min-height: $icon-h * 1.8;
+    }
+}
+
+.download-icon{
+    display: inline-flex;
+    &::before{
+        content: "";
+        display: flex;
+        background-image: url("../../static/img/download.svg");
+        -webkit-background-size: cover;
+        background-size: cover;    
+        min-width: $icon-w;
+        min-height: $icon-h;
+    }
+}
