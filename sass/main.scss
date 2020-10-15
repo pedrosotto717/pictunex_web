@@ -9,19 +9,29 @@
 
 
 // -- Components
+@import 'components/loader';
 @import 'components/icons';
 @import 'components/slide';
 @import 'components/button-main';
+@import 'components/btn-hamburguer';
 @import 'components/logo-px';
 @import 'components/search-box';
 @import 'components/is-search';
 @import 'components/main-menu';
 @import 'components/gallery';
 @import 'components/modal-view-box-gallery';
+@import 'components/pagination';
+@import 'components/filters-category';
 
 
 // -- Layout
 @import 'layout/layout.util';
 @import 'layout/header';
 
-@import 'views/index';
+
+html{
+  /*font-family: $font-second;*/
+  @include mq_next(1280px){
+    font-size: 1.15em;
+  }
+}

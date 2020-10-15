@@ -7,16 +7,20 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
 	<title>Pictunex | Pixele your World</title>
-	<link rel="stylesheet" href="assets/css/main.css?000023">
-	<!-- <link rel="stylesheet" href="assets/css/font-awesome.css"> -->
-	<link rel="stylesheet" href="./assets/css/font-awesome.css">
-	<link rel="logo" href="static/img/logo-px.svg">
+	<link rel="stylesheet" href="assets/css/main.css?0000038">
+	<script src="main.js" type="module"></script>
 </head>
 
-<body>
-	<div class="header is-search-h--n"> <!-- is-search-h -->
+
+<body class="loader">
+	<div class="loader-container">
+		<div class="loader-load">
+			<span class="logo-px main"></span>
+		</div>
+	</div>
+	<div class="header is-search-h"> <!-- is-search-h -->
 		<!-- header  -->
-		<header class="is-search--n"> <!-- is-search-h -->
+		<header class="is-search"> <!-- is-search-h -->
 			<div class="search-bar">
 
 				<!-- logo PICTUNEX -->
@@ -24,18 +28,21 @@
 					<span class="logo-px main"></span>
 					<span class="logo__title">Pictunex</span> 
 				</div>
-
+				
 				<!-- Search Box -->
-				<form id="uno" class="formSearch search-box--nav">
-					<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
-					<button type="reset"><span class="fa fa-times"></span></button>
-					<button type="submit"><span class="fa fa-search"></span></button>
-				</form>
+				<div class="search-container">
+					<button id="show-search-box" class="btn fa fa-search"></button>
+					<form class="formSearch search-box--nav">
+						<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
+						<button type="reset"><span class="fa fa-times"></span></button>
+						<button type="submit"><span class="fa fa-search"></span></button>
+					</form>
+				</div>
 			</div>
 
 			<!-- botton Menu -->
-			<button class="icon btn-menu">
-				<span class="menu-icon"></span>
+			<button class="btn-hamburguer">
+				<span class="line"></span>
 			</button>
 
 			<!-- Menu -->
@@ -50,13 +57,6 @@
 					</ul>
 				</nav>
 
-				<!-- search-box -> menu-main  -->
-				<form id="dos" class="formSearch search-box--menu">
-					<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
-					<button type="reset"><span class="fa fa-times"></span></button>
-					<button type="submit"><span class="fa fa-search"></span></button>
-				</form>
-
 			</div>
 		</header>
 
@@ -65,7 +65,7 @@
 			<h3 id="slogan--machine" class="slogan">Pixele your Life... Pixele your World</h3>
 			<!-- Search Box -->
 
-			<form id="tres" class="formSearch search-box transparent">
+			<form class="formSearch search-box transparent">
 				<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
 				<button type="reset"><span class="fa fa-times"></span></button>
 				<button type="submit"><span class="fa fa-search"></span></button>
@@ -87,10 +87,17 @@
 	<div class="container-px">
 		<main>
 
-		<div class="filter-imgs container-px">
+		<div class="filter-imgs container-px controller-container-h">
+			<button class="btn-prev-c btn-c">
+				<span class="fa fa-chevron-left"></span>
+			</button>
+
 			<ul>
-				
 			</ul>
+
+			<button class="btn-next-c btn-c">
+				<span class="fa fa-chevron-right"></span>
+			</button>
 		</div>
 
 		<!-- #pictunex-gallery -->
@@ -98,7 +105,7 @@
 		</section>
 		<!-- #end pictunex-gallery -->
 
-		<div class="modal">
+		<div id="modal-gallery" class="modal">
 			<button class="btn modal-close">
 				<span class="fa fa-times"></span>
 			</button>
@@ -140,13 +147,29 @@
 			
 			</section>
 		</div>
+
+		<div class="container-pagination">
+			<div class="pagination controller-container-h">
+				<ul>
+
+				</ul>
+			</div>
+		</div>
 	
 		</main>
 	</div>
 
+	<link rel="stylesheet" href="./assets/css/font-awesome.css">
+	<script src= "./assets/js/modules/btn-hamburguer.js"></script>
 	<script src= "./assets/js/modules/masonry-px.js"></script>
 	<script src= "./assets/js/modules/light-box.js"></script>
-	<script src="main.js" type="module"></script>
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded",()=>{
+			setTimeout(()=>{
+				document.body.classList.remove("loader")
+			},2000);
+		})
+	</script>
 </body>
 
 </html>

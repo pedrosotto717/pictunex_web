@@ -17,30 +17,26 @@
 		min-height: 55px;
 	}
 
-	@include mq(md){
-		display: none;
-	}
-
 	@include mq_next(md){
 		&.transparent{
 			box-shadow: 0 0 1px 0 #000;
 	
 			.search-input{
 				transition: background-color $transition-global;
-				background-color: rgba(255,255,255,0.2);
+				background-color: rgba(255,255,255,0.15);
 			}
 	
 			button[type="reset"],
 			button[type="submit"]{
 				transition: background-color $transition-global;
-				background-color: rgba(255,255,255,0.2);
+				background-color: rgba(255,255,255,0.15);
 			}
-	
+
 			.search-input:focus,
 			.search-input:focus ~ button[type]{
 				background-color: #fff;
 			}
-	
+
 			.search-input:focus ~ button[type="submit"]:hover{
 				background-color: $enf-color-overlay;
 			}
@@ -110,10 +106,10 @@
 	&.hidden{
 		display: none;
 	}
-
 }
 
 .no-coincidence{
+	grid-column: 1 / -1;
 	width: 100%;
 	padding: 20px;
 	p{

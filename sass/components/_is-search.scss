@@ -7,26 +7,7 @@
     
     top: 0;
     z-index: 400;
-    width: 101%;
-    margin-left: -5px;
-    margin-right: -5px;
+    width: 100%;
     flex: 1 1 100%;
-
-    .nav-bar{
-        flex: 0 0 30%;
-        min-width: 400px;
-        padding: 0 10px;
-        @include mq_next(lg){
-            flex: 0 0 25%;
-        }
-    }
-
-    .search-bar{
-        .search-box{
-            flex: 1 1 100%;
-            visibility: visible;
-            opacity: 1;
-        }
-    }
 }
 

@@ -1,0 +1,109 @@
+/*
+->	Estos son los estilos de el boton de hamburguesa:
+		hay un par de clases para personalizar un poco 
+		el diseño...
+		.btnH-line-sm  establece el tamaño o grosor de las lineas 3px
+		.btnH-line-md  establece el tamaño o grosor de las lineas 4px
+		.btnH-line-lg  establece el tamaño o grosor de las lineas 5px
+
+		.btnH-main     estable unas variaciones en los colores del botom
+		.btnH-bn   	   estable unas variaciones en los colores del botom
+		.btnH-a   	   estable unas variaciones en los colores del botom 
+
+	Para usar el boton solo deben de crear en el HTML:
+		<button class="btn-hamburguer">
+			<span class="line"></span>
+		</button>
+
+	Linkan el btn_hamburguer.css
+	y Si quieren tambien el btn_hamburguer.js 
+	Aunque ustedes mismos pueden hacer la parte del JS
+*/
+
+:root{
+	--bgc: #00C294; /*#00C294*/
+	--tamLineHam: 3px;
+}
+
+//Color 
+$color: $enf-color;
+
+
+.btn-hamburguer{
+	position: relative;
+	background: transparent;
+	/*background-color: var(--bgc);*/
+	outline: none;
+	border: none;
+	z-index: 999;
+	margin-right: 10px;
+
+	min-height: 50px;
+	min-width: 50px;
+
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	
+	display: none;
+	@include mq(md){
+		display: flex;
+	}
+}
+
+.line{
+	position: absolute;
+	display: flex;
+	width: 30px;
+	height: var( --tamLineHam );
+	background-color: $color;
+	border-radius: 0px;
+	transition: 0.1s all ease;
+}
+
+.line::before{
+	content: "";
+	position: absolute;
+	display: flex;
+	width: 30px;
+	height: var( --tamLineHam );
+	background-color: $color;
+	margin-top: -10px;
+	border-radius: 0px;
+	transform-origin: 50% center;
+	transition: all 0.3s 0.01s;
+}
+
+.line::after{
+	content: "";
+	position: absolute;
+	display: flex;
+	width: 30px;
+	height: var( --tamLineHam );
+	background-color: $color;
+	margin-top: 10px;
+	border-radius: 0px;
+	transform-origin: 50% center;
+	transition: all 0.3s 0.01s;
+	color: inherit;
+}
+
+.btn-hamburguer.active .line::after{
+	margin-top: 0px;
+	background-color: #fff;
+	transform: rotate(-45deg);
+	transition: all 0.25s ease 0.1s;
+}
+
+.btn-hamburguer.active .line::before{
+	margin-top:  0px;
+	background-color: #fff;
+	transform: rotate(45deg);
+	transition: all 0.25s ease 0.1s;
+}
+
+.btn-hamburguer.active .line{
+	transition: all 0.1s ease 0.1s;
+	background-color: transparent;
+}
+

@@ -10,14 +10,16 @@ export default class Images extends InterfaceApiPX{
 		this.allImages = []
 		this.allCurrentImages = []
 		this.containerGallery = document.querySelector(config.container)
-		this.pag = localStorage.getItem("CURRENT_PAG") || 0; //!-
+		this.pag = sessionStorage.getItem("CURRENT_PAG") || 0; //!-
 		this.keyOldSearch = null
 		this.currentCategory = "all"
 		this.containerCategories = null
 	}
 
 	async initCategories(container,callback){
+
 		let categories = {}
+		
 		if(typeof localStorage.getItem("CATEGORIES") === "string"){
 			categories = JSON.parse(localStorage.getItem("CATEGORIES"))
 		}else{
@@ -49,12 +51,79 @@ export default class Images extends InterfaceApiPX{
 			callback(this.containerCategories)
 	}
 
+
+	initPagination(container, callback = null){
+
+		console.log(this.allImages,"this.all")
+		
+		const containerPagination = document.querySelector(container)
+		containerPagination.innerHTML = "";
+
+		if(this.allImages.length > 0){
+			console.log("EXECUTE")
+
+			if(this.allImages.length == 1){
+				containerPagination.innerHTML = "";
+				return 0
+			}
+
+			this.allImages.forEach( (el, index) => {
+				const $li = document.createElement("li")
+				
+				$li.insertAdjacentHTML("beforeend",`
+					<a class="index-pag ${index==0 ? "active" : ""}" data-pag="${index}" href="#">${index+1}</a>
+				`)
+
+				containerPagination.appendChild($li)
+			});
+
+			if(typeof callback == "function")
+				callback(containerPagination,this)
+		}else{
+			let acum = 1
+
+			const interval = setInterval(()=>{
+				console.log("setInterval",this.allImages,this.allImages.length)
+				if(this.allImages.length > 0){
+					console.log("finish Interval")
+					clearInterval(interval)
+					return this.initPagination(container, callback)
+				}
+
+				if(acum >= 5){
+					containerPagination.innerHTML = "";
+					clearInterval(interval)
+				}else{
+					acum++
+				}
+
+			},2000);
+		}
+	}
+
+	/**
+	 * This Method is to Reset (gallery's container,the Images, Masonry Layout)
+	 */
+
+	loadCurrent(callback = null){
+		this.allCurrentImages = this.allImages[this.pag]
+		this.restartContainer()
+		this.insertInDOM(this.allCurrentImages)
+		this.runMasonry()
+		if(typeof callback == "function")
+			callback()
+	}
+
 	/**
 	 * Get All images 
 	 */
 	async loadAll(callback = null,reset = false){
-		if(typeof localStorage.getItem("ALL_IMG") === "string"){
-			const res = JSON.parse(localStorage.getItem("ALL_IMG"))
+		
+		this.pag = 0
+
+
+		if(typeof sessionStorage.getItem("ALL_IMG") === "string"){
+			const res = JSON.parse(sessionStorage.getItem("ALL_IMG"))
 			if(typeof res === "object"){
 				this.allImages = res
 				this.allCurrentImages = this.allImages[this.pag]
@@ -65,7 +134,7 @@ export default class Images extends InterfaceApiPX{
 			if(res!=null && res.length > 0){
 				this.allImages = res
 				this.allCurrentImages = this.allImages[this.pag]
-				localStorage.setItem("ALL_IMG",JSON.stringify(res))
+				sessionStorage.setItem("ALL_IMG",JSON.stringify(res))
 				console.log("NETWORK")
 			}
 		}
@@ -78,6 +147,10 @@ export default class Images extends InterfaceApiPX{
 			this.insertInDOM(this.allCurrentImages)
 		}
 
+		//reset pag to 0 
+		this.pag = 0
+		this.initPagination(".pagination ul")
+
 		if(typeof callback == "function")
 			callback()
 	}
@@ -87,10 +160,13 @@ export default class Images extends InterfaceApiPX{
 	 */
 	async loadByCategory(category,callback = null, objAux = null){
 
+		this.pag = 0
+
+
 		if(category.length == 0) return false
 
 		if(this.currentCategory != category){
-			
+
 			if(category == "all"){
 				return this.loadAll(()=>{
 					this.currentCategory = category
@@ -98,8 +174,8 @@ export default class Images extends InterfaceApiPX{
 				},true);
 			}
 
-			if(typeof localStorage.getItem(category) === "string"){
-				const res = JSON.parse(localStorage.getItem(category))
+			if(typeof sessionStorage.getItem(category) === "string"){
+				const res = JSON.parse(sessionStorage.getItem(category))
 				if(typeof res === "object"){
 					console.log("LOCAL_STORAGE")
 					this.allImages = res
@@ -111,15 +187,28 @@ export default class Images extends InterfaceApiPX{
 					console.log("NETWORK")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
-					localStorage.setItem(category,JSON.stringify(res))
+					sessionStorage.setItem(category,JSON.stringify(res))
+				}else{
+					this.currentCategory = category
+					this.restartContainer()
+					this.allImages = []
+					this.pag = 0
+					this.initPagination(".pagination ul")
+					return this.notFound(this.currentCategory, callback)
 				}
 			}
 
+
 			this.currentCategory = category
+			console.log("category:  ", this.currentCategory)
 			this.restartContainer()
 			this.insertInDOM(this.allCurrentImages)
 			this.runMasonry()
-	
+		
+			//reset pag to 0 
+			this.pag = 0
+			this.initPagination(".pagination ul")
+
 			if(typeof callback == "function")
 				callback()
 		}
@@ -131,15 +220,20 @@ export default class Images extends InterfaceApiPX{
 	 * Search
 	 */
 	async loadSearch(key, callback = null){
-
+		
+		this.pag = 0
+		console.log(key)
+		
 		if(key.length == 0) return false
-		key = key.replaceAll(/[\@\#\\\-\¡\º\!\|*?¿+-+_+:;+=+>+<\{}\[\]\.+,+``´´\/\'\"\+^\¨]/gi,"")
+		key = key.replace(/[\@\#\\\-\¡\º\!\|*?¿+-+_+:;+=+>+<\{}\[\]\.+,+``´´\/\'\"\+^\¨]/gi,"")
+		key = key.toLowerCase()
+		console.log(key, " Despues")
 
 		this.clearListCategories()
 		
 		if(key != this.keyOldSearch){
-			if(typeof localStorage.getItem(key) === "string"){
-				const res = JSON.parse(localStorage.getItem(key))
+			if(typeof sessionStorage.getItem(key) === "string"){
+				const res = JSON.parse(sessionStorage.getItem(key))
 				if(typeof res === "object"){
 					console.log("LOCAL_STORAGE")
 					this.allImages = res
@@ -151,19 +245,29 @@ export default class Images extends InterfaceApiPX{
 					console.log("NETWORK")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
-					localStorage.setItem(key,JSON.stringify(res))
+					sessionStorage.setItem(key,JSON.stringify(res))
 				}else{
 					this.keyOldSearch = ""
+					this.restartContainer()
+					this.allImages = []
+					this.pag = 0
+					this.initPagination(".pagination ul")
 					return this.notFound(key)
 				}
 			}
 	
-			// console.log(this.allCurrentImages)
+
+			console.log("search :: ",this.allCurrentImages,this.allImages,this.pag)
 			this.restartContainer()
 			this.insertInDOM(this.allCurrentImages)
 			this.runMasonry()
 			this.keyOldSearch = key
 	
+			//reset pag to 0 
+			this.pag = 0
+			this.initPagination(".pagination ul")
+
+
 			if(typeof callback == "function")
 				callback()
 		}
@@ -175,6 +279,7 @@ export default class Images extends InterfaceApiPX{
 	 */
 	insertInDOM(arrElem){
 
+		console.log(arrElem)
 		const $fragment = document.createDocumentFragment()
 		arrElem.forEach( (el,index) => {
 			const $content = `<figure>
@@ -235,12 +340,16 @@ export default class Images extends InterfaceApiPX{
 		},1000)
 	}
 
-	notFound(key){
+	notFound(key,callback = null){
 		const msg = `<div class="no-coincidence">
 						<p>No Coincidence with "<span>${key}</span>"</p>
 					</div>`
 		this.restartContainer()
 		this.containerGallery.innerHTML = msg
+		sessionStorage.setItem("CURRENT_PAG", 0)
+
+		if(typeof callback == "function")
+			callback()
 	}
 
 	clearListCategories(n = null){
@@ -256,3 +365,10 @@ export default class Images extends InterfaceApiPX{
 
 }
 
+
+
+/*
+
+debe guardar en data- el numero de pag para hacer lo del color
+
+*/

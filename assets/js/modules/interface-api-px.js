@@ -6,6 +6,7 @@ export default class InterfaceApiPX{
 
 	constructor(url){
 		this.URL = url
+		this.maxForPag = 10
 	}
 
 	/*		Method to get all Images from API 		
@@ -20,7 +21,8 @@ export default class InterfaceApiPX{
 				const responseParse = await response.json()
 				
 				return new Promise((res,rej)=>{
-					const arrReponse = this.reduceArray(responseParse,30)
+					const arrReponse = this.reduceArray(responseParse,this.maxForPag)
+					console.log(arrReponse)
 					res(arrReponse)
 				})
 			}else
@@ -80,7 +82,7 @@ export default class InterfaceApiPX{
 				const responseParse = await response.json()
 				
 				return new Promise((res,rej)=>{
-					const arrReponse = this.reduceArray(responseParse,30)
+					const arrReponse = this.reduceArray(responseParse,this.maxForPag)
 					res(arrReponse)
 				})
 			}else if(response.status == 404)
@@ -105,7 +107,7 @@ export default class InterfaceApiPX{
 				const responseParse = await response.json()
 				
 				return new Promise((res,rej)=>{
-					const arrReponse = this.reduceArray(responseParse,30)
+					const arrReponse = this.reduceArray(responseParse,this.maxForPag)
 					res(arrReponse)
 				})
 			}else
@@ -132,7 +134,4 @@ export default class InterfaceApiPX{
 		}
 		return arrReponse
 	}
-
-
-
 }

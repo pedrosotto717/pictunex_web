@@ -14,11 +14,17 @@ class lightBox{
 		btnPrev = typeof btnPrev == "string" ? document.querySelector(`${btnPrev}`) : btnPrev
 		btnNext = typeof btnNext == "string" ? document.querySelector(`${btnNext}`) : btnNext
 
+		//Close The Modal
+		this.container.addEventListener("click", ev =>{
+			if(ev.target.getAttribute("class") === this.container.getAttribute("class"))
+				this.disableLB()
+		});
 
 		btnClose.addEventListener("click", ev =>{
 			this.disableLB()
 		});
 
+		//Controllers
 		btnPrev.addEventListener("click", ev =>{
 			this.prev()
 		});
@@ -101,7 +107,7 @@ class lightBox{
 			obj.categories.forEach( (c) => {
 				let $li = document.createElement('li')
 				$li.classList.add('mark-c')
-				let $a = `<a href="#${c}">${c}</a>`
+				let $a = `<a class="link-category" href="#${c}">${c}</a>`
 				$li.insertAdjacentHTML("afterbegin",$a)
 				$categories.appendChild($li)
 			});
@@ -120,7 +126,6 @@ class lightBox{
 		}else
 			this.error = false
 	}
-
 
 	disableLB(){
 		this.container.classList.remove("active")

@@ -1,0 +1,71 @@
+$tam: 45px;
+
+.container-pagination{
+	width: 100%;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.pagination ul{
+	position: relative;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	width: auto;
+	min-height: 50px;
+	position: relative;
+	padding: 0 1px;
+	overflow-x: hidden;
+
+
+	max-width: ($tam * 10) + 2; 
+
+	@include mq(sm){
+		max-width: ($tam * 5) + 2;
+	}
+
+	li{
+		display: inline-flex;
+		justify-content: center;
+		-ms-align-items: center;
+		align-items: center;
+		&:first-child{
+			margin-left: 0.7px;
+		}
+	}
+}
+
+.pagination .index-pag{
+	font-family: $font-second;
+	font-size: 1.15em;
+	line-height: 1;
+	padding: 10px 15px;
+	color: #000;
+	margin: 0;
+	/*margin-right: 5px;*/
+	box-shadow: 0 0 1.8px 0 #000;
+	transition: all $transition-global;
+	display: inline-flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+
+	min-width: $tam;
+	min-height: $tam;
+	width: $tam;
+
+	&.active,
+	&:hover{
+		box-shadow: 0 0 1px 0 #fff;
+		color: #fff;
+		background-color: $enf-color-overlay;
+	}
+
+	@include mq(lg){
+		font-size: 1em;
+		box-shadow: 0 0 1px 0 #000;
+	}
+}

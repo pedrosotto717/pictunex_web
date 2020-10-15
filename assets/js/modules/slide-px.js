@@ -17,9 +17,12 @@ export default class SlidePX{
 
 
   run(){
-    this.animationInterval = setInterval(() => {
-      if(this.ready){
+    this.animationInterval = setInterval( () => {
+
+      if(this.ready && !this.isMobile()){
+
         this.ready = false
+
         this.nextSlide(()=>{
           this.ready = true
           if(this.noMobile)
@@ -70,8 +73,12 @@ export default class SlidePX{
 
 
   isMobile(){
-    if(window.innerWidth<475)
+    if(window.innerWidth <= 600){
+      console.log(":STOP:")
       this.stop()
+      return true;
+    }
+    return false
   }
 
 
@@ -90,6 +97,7 @@ export default class SlidePX{
 
   stop(){
     clearInterval(this.animationInterval)
-    console.log("Stoped")    
+    console.log("Stoped")
+    return 0
   }
 }

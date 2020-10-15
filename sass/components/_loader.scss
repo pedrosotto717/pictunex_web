@@ -1,0 +1,51 @@
+body.loader{
+	overflow: hidden;
+	.loader-container{
+		z-index: 1010;
+		display: flex;
+
+		.loader-load span{
+			animation: loader 2s infinite ease;
+		}
+	}
+}
+
+.loader-container{
+	z-index: 0;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(#000,.9);
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	min-width: 100vw;
+	min-height: 100vh;
+}
+.loader-load{
+	position: relative;
+	display: flex;
+	height: auto;
+	width: auto;
+	margin: auto;
+	span{
+		animation: loader 2.5s infinite alternate 0.1s;
+	}
+}
+
+@keyframes loader{
+	0%{
+		transform: scale(1);
+	}
+
+	85%{
+		transform: scale(2);
+	}
+
+	100%{
+		transform: scale(1.8);
+	}
+}

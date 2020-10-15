@@ -2,17 +2,18 @@
 .menu-main{
 
     .nav-bar{
-        flex: 0 0.45%;
+        flex: 1 0 45%;
+        padding: 0 10px;
         max-width: 500px;
-        min-width: 320px;
+        width: auto;
+        min-width: 400px;
         display: block;
+        
 
-        @include mq(lg){
-            flex: 1 1 38%;
-            max-width: 400px;
+        @include mq(1100px){
+            min-width: 325px;
         }
-
-
+        
         ul{
             display: flex;
             justify-content: space-evenly;
@@ -41,18 +42,7 @@
                 }
             }
         }
-
-        .search-box{
-            display: none;
-        }
     }//end .nav-bar
-
-    
-    .search-box--menu{
-        @extend .search-box;
-        display: none;
-        transition: clip-path 0s 0s;
-    }
 
 
     @include mq(md){ // menu de navegacion en modo tableta
@@ -75,38 +65,34 @@
         align-content: center;
         flex-wrap: wrap;
         margin: 0;
+        padding: 75px 15px;
         transition: all 0.3s linear 0.3s;
-
-        .search-box--menu{
-            clip-path: circle(5px at left center);
-            display: flex;
-            flex: 0 0 100%;
-            padding: 0 10px;
-            position: relative;
-            /*top: 150px;*/
-            max-width: calc(100% - 50px);
-            transition: clip-path 0.3s linear 0s;
-
-        }
 
 
         .nav-bar{
+            min-height: 100%;
+            min-width: 100%;
+            
             ul{
+                min-height: 100%;
+                min-width: 100%;
                 flex: 0 0 100%;
                 position: relative;
-                justify-content: center;
                 align-items: center;
                 flex-wrap: wrap;
-                min-width: 100%;
-                min-height: 100%;
-                margin-bottom: 50px;
-
 
                 .nav__item{
+
                     display: flex;
-                    min-width: 60px;
-                    clip-path: circle(1%);
-                    transition: clip-path 0.05s linear 0s;
+                    min-width: 100%;
+                    clip-path: circle(1% at 0 center);
+                    transition: clip-path 0.25s linear 0s;
+                    justify-content: center;
+                    margin-bottom: 15px;
+
+                    a{
+                        min-width: 100%;
+                    }
                 }
             }
         }
@@ -124,11 +110,6 @@
                         background-color: transparentize($enf-color-overlay,0.8%);
                     }
                 }
-            }
-
-            .search-box--menu{
-                clip-path: circle(100%);
-                transition: clip-path 0.8s ease 0.55s;
             }
         }
     } // end media query (md)

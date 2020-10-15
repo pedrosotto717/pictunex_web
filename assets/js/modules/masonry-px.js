@@ -1,3 +1,4 @@
+
 function msr (containerSelector, itemsSelector, GRheight) {
     const items = document.querySelectorAll(itemsSelector),
           container = document.querySelector(containerSelector),
@@ -6,8 +7,6 @@ function msr (containerSelector, itemsSelector, GRheight) {
     for (let i = 0; i < items.length; i++) {
 
         const H = imgItems[i].height 
-        // console.log(H,Math.round((H) / GRheight),Math.round( ((H / 2) / GRheight) ),items[i])
-
         let hFinal = 1
 
         if(H<500){
@@ -23,14 +22,9 @@ function msr (containerSelector, itemsSelector, GRheight) {
         items[i].style.gridRowEnd = 'span ' + hFinal;
         items[i].style.position = 'relative'
 
-        container.classList.add("active")
-
         setTimeout(()=>{
+            container.classList.add("active")
             // container.style.gridAutoRows = "75px";
-        },1000);
+        },300);
     }
 }
-
-// addEventListener("load", ev => {
-//     msr('.masonry-layout', '.masonry-item', 100)
-// })	

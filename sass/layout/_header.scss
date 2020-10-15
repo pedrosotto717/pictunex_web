@@ -3,13 +3,19 @@
 //===============================================
 
 .header{
-    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    --height-nav-bar: 70px;
+    position: relative;
+    min-width: 100vw;
     height: auto;
     display: grid;
-    grid-template-columns: repeat(12,minmax(25px,1fr));
-    grid-template-rows: 80px minmax(400px,60vh);
-    grid-auto-rows: 0px;
+    grid-template-columns: repeat(12,minmax(25px, 1fr));
+    grid-template-rows: var(--height-nav-bar) minmax(400px, 60vh);
+    grid-auto-rows: 0;
     align-items: center;
+    transition: all $transition-global;
 
     &::before{
         content: '';
@@ -23,16 +29,20 @@
         background-color: transparentize(#000, 0.8%);
     }
 
-    &.is-search{
-        grid-template-rows: 80px 300px;
-    }
+   // UX - ?
+   /* &.is-search-h{
+        grid-template-rows: 70px 300px;
+        .h-m-content .formSearch{
+            display: none;
+        }
+    }*/
 
     @include mq(md){
-        grid-template-rows: 100px minmax(200px,50vh);
+        grid-template-rows: var(--height-nav-bar) minmax(200px,50vh);
     }
     
     @include mq_next(xl){
-        grid-template-rows: 100px minmax(400px,60vh);
+        grid-template-rows: var(--height-nav-bar) minmax(400px,60vh);
     }
 } 
 
@@ -41,7 +51,7 @@
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     height: 80px;
-    max-height: 100px;
+    max-height: 75px;
     width: 100%;
     min-width: 100vw;
     position: sticky;    
@@ -57,7 +67,8 @@
     }
 
     @include mq(md){
-        max-height: 75px;
+        max-height: 70px;
+        padding: 5px 10px;
     }
     
     .search-bar{
@@ -67,20 +78,102 @@
         justify-content: flex-start;
         height: 100%;
         width: 100%;
-
-        .search-box--nav{
-            visibility: hidden;
-            opacity: 0;
-            width: 100%;
+        
+        .search-container{
             flex: 1 1 100%;
-            @extend .search-box;
+            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+            height: auto;
+            width: auto;
+            .search-box--nav{
+                @extend .search-box;
+            }
+
+            #show-search-box{
+                display: none;
+            }
         }
 
         @include mq_next(lg){
-            flex: 11 100%;
+            flex: 1 1 100%;
+        }
+
+        @include mq(sm){
+
+            .search-container{
+                width: 100%;
+                position: relative;
+                height: auto;
+                
+                #show-search-box{
+                    z-index: 1001;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    margin-left: calc(100% - (70px * 2));
+                    position: fixed;
+                    color: #fff;
+                    background-color: $enf-color-overlay;
+                    min-height: var(--height-nav-bar);
+                    cursor: pointer;
+                    transition: margin-left 0.2s linear 0;
+                    transition: background-color 0.2s linear 0.2s;
+
+                }
+
+                //flag
+                .search-box--nav{
+                    position: fixed;
+                    right: -2px;
+                    top: 0;
+                    bottom: 0;
+                    min-height: var(--height-nav-bar);
+                    padding-left: 50px;
+                    z-index: -1;
+                    margin: 0 !important;
+                    transition: clip-path 0.2s ease;
+
+                    /*clip-path: circle(1% at -60px center);*/
+                    clip-path: circle(1% at calc(100% - 120px) center);
+
+                    & > * {
+                        min-height: inherit;
+                    }
+                }
+
+                &.show{
+
+                    #show-search-box{
+                        position: fixed;
+                        display: block;
+                        background-color: #fff;
+                        color: #000;
+                        min-width: 50px;
+                        margin-left: 0;
+                        transition: margin-left 0.3s ease;
+                        transition: background-color 0.3s linear 0;
+                        margin: 0;
+                    }
+
+                    .search-box--nav{
+                        z-index: 1000;
+                        visibility: visible;
+                        opacity: 1;
+                        font-size: 1em;
+                        clip-path: circle(1000px at -60px center);
+                        transition: clip-path 1s ease 0s;
+                        box-shadow: 0 1px 1px 0 #000;
+                    }
+
+                    
+                }
+            }
+            
         }
     }
-
+ 
+    //flag
     @include mq(md){
         @include is-search();
         .search-bar{
@@ -92,13 +185,13 @@
         }
     } 
 
-    @include mq(900px){
-        .search-bar{
-            .search-box--nav{
-                display: none;
-            }
-        }
-    } 
+    // @include mq(900px){
+    //     .search-bar{
+    //         .search-box--nav{
+    //             display: none;
+    //         }
+    //     }
+    // } 
 
 
     .btn-menu{
@@ -123,8 +216,12 @@
     font-family: $font-main;
     font-size: 2.7em;
     line-height: 1;
-    flex: 0 0 40%;
+    flex: 0 1 40%;
     max-width: 450px;
+
+    /*@include mq(md){
+        padding: 5px;
+    }*/
 
     &-px{
         margin-right: 20px;
@@ -168,7 +265,9 @@
     h1.slogan--title{
         font-family: $font-main;
         font-size: 3em;
+        margin-bottom: 10px;
         @include mq_next(1220px){
+            margin-bottom: 16px;
             font-size: 3em;
         }
 
@@ -181,15 +280,20 @@
         font-weight: bolder;
         font-family: $font-aux;
         font-size: 1.5em;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         width: 100%;
         @include mq(md){
             font-size: 1.2em;
         }
     }
     h3.slogan{
-        text-shadow: 0 0 0.25em #000;
         min-height: 1.5em;
+    }
+
+    @include mq(lg){
+        .formSearch{
+            display: none;
+        }
     }
 
     
