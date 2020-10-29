@@ -5,13 +5,12 @@ const d = document;
 
 addEventListener("load",()=>{
 
-
   /**
    * Instance and initialization of the class Images
    */
 
   const API = new Images({
-    url: "http://192.168.43.124/server/api",
+    url: config.getURL_API(),
     container: '.masonry-layout'
   })
 
@@ -83,7 +82,7 @@ addEventListener("load",()=>{
 
         try {
           const value = ev.target.textContent,
-                index = JSON.parse(sessionStorage.getItem("CATEGORIES")).categories.indexOf(value) + 1
+                index = JSON.parse(localStorage.getItem("CATEGORIES")).categories.indexOf(value) + 1
           
           if(index != -1){
             API.loadByCategory(value,() => {
@@ -250,4 +249,10 @@ addEventListener("load",()=>{
     }
 
   });
+
+  //menu 
+  if(document.querySelector(".menu-main")){
+  btnHamburguer(".menu-main");
+  }
+
 }); // end <- addEventListener("load",()=>{})

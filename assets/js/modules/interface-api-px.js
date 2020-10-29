@@ -6,16 +6,23 @@ export default class InterfaceApiPX{
 
 	constructor(url){
 		this.URL = url
-		this.maxForPag = 10
+		this.maxForPag = config.getMaxForPag()
 	}
 
 	/*		Method to get all Images from API 		
 		--return [[],[],[],...] 
 	*/
-	async getAll(){
+	async getAll(userId = null){
 
 		try {
-			const response = await fetch(this.URL + "/images");
+
+			let response = null;
+
+			if(userId===null)
+				response = await fetch(this.URL + "/images");
+			else if(userId != null && userId != undefined && userId.length>0)
+				response = await fetch(this.URL + `/images&user_id=${userId}`);
+			else return null
 
 			if(response.status == 200){
 				const responseParse = await response.json()
@@ -38,7 +45,7 @@ export default class InterfaceApiPX{
 	*/
 	async getById(id){
 		try {
-			const response = await fetch(this.URL + "/images/" + id);
+			const response = await fetch(this.URL + `/images/${id}`);
 
 			if(response.status==200)
 				return await response.json()
@@ -74,9 +81,17 @@ export default class InterfaceApiPX{
 	/*		Method to search for keyWord		
 		--return [[],[],[],...] 
 	*/
-	async search(keyWord){
+	async search(keyWord,userId = null){
 		try {
-			const response = await fetch(this.URL + "/images/search?q=" + keyWord);
+
+			let response = null;
+
+			if(userId===null)
+				response = await fetch(this.URL + `/images/search?q=${keyWord}`);
+			else if(userId != null && userId != undefined && userId.length>0)
+				response = await fetch(this.URL + `/images/search?q=${keyWord}&user_id=${userId}`);
+			else return null;
+
 
 			if(response.status == 200){
 				const responseParse = await response.json()
@@ -99,14 +114,22 @@ export default class InterfaceApiPX{
 	/*		Method to search for categories		
 		--return [[],[],[],...] 
 	*/
-	async getByCategory(category){
+	async getByCategory(category,userId = null){
 		try {
-			const response = await fetch(this.URL + `/images/category/${category}`);
+			console.log(null)
+			let response = null;
+
+			if(userId === null)
+				response = await fetch(this.URL + `/images/category/${category}`);
+			else if(userId != null && userId != undefined && userId.length>0)
+				response = await fetch(this.URL + `/images/category/${category}&user_id=${userId}`);
+			else return null;
 
 			if(response.status == 200){
 				const responseParse = await response.json()
 				
 				return new Promise((res,rej)=>{
+					console.table(responseParse)
 					const arrReponse = this.reduceArray(responseParse,this.maxForPag)
 					res(arrReponse)
 				})

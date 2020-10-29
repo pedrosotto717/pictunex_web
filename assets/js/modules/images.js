@@ -174,8 +174,8 @@ export default class Images extends InterfaceApiPX{
 				},true);
 			}
 
-			if(typeof sessionStorage.getItem(category) === "string"){
-				const res = JSON.parse(sessionStorage.getItem(category))
+			if(typeof localStorage.getItem(category) === "string"){
+				const res = JSON.parse(localStorage.getItem(category))
 				if(typeof res === "object"){
 					console.log("LOCAL_STORAGE")
 					this.allImages = res
@@ -187,7 +187,7 @@ export default class Images extends InterfaceApiPX{
 					console.log("NETWORK")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
-					sessionStorage.setItem(category,JSON.stringify(res))
+					localStorage.setItem(category,JSON.stringify(res))
 				}else{
 					this.currentCategory = category
 					this.restartContainer()

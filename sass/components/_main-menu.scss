@@ -24,7 +24,7 @@
                 min-width: 60px;
                 a{
                     color: #fff;
-                    font-size: 1.2em;
+                    font-size: 1.05em;
                     font-family: $font-main;
                     font-weight: normal;
                     
@@ -33,7 +33,7 @@
                     }
                     
                     @include mq_next(xl){
-                        font-size: 1.1em;
+                        font-size: 1.2em;
                     }
                     
                     &:hover{

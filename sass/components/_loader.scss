@@ -5,7 +5,7 @@ body.loader{
 		display: flex;
 
 		.loader-load span{
-			animation: loader 2s infinite ease;
+			animation: loader 2s infinite alternate ease;
 		}
 	}
 }
@@ -35,6 +35,13 @@ body.loader{
 		animation: loader 2.5s infinite alternate 0.1s;
 	}
 }
+
+/*@keyframes loader{
+	100%{
+		transform: rotate(360deg);
+	}
+}
+*/
 
 @keyframes loader{
 	0%{

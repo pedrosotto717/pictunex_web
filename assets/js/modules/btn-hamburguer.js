@@ -23,9 +23,6 @@ function btnHamburguer(nameMenu) {
       setTimeout( () => btnH.classList.toggle('active'),10);
   });
 
-  // menu.addEventListener('click', () => removeClass() );
+  menu.addEventListener('click', () => removeClass() );
 
 }// <--< END btnHamburguer(string);
-
-btnHamburguer(".menu-main");
-

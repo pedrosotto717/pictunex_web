@@ -190,27 +190,26 @@
 				/*min-width: 100px;*/
 
 				a{
-					display: inline-flex;
+					display: flex;
+					width: 100%;
+					height: 100%;
 					font-family: $font-second;
 					color: #000;
 					padding: 10px;
-					/*background-color: rgba($enf-color-overlay, .6);*/
 					font-size: 1.2em;
-					transition: all $transition-global;
 					box-shadow: 0 0 1px 0 #000;
-
 					@include mq(lg){
 						font-size: 1em;
 					}
 				}
-
+/*
 				&:hover{
 					text-decoration: underline;
 					a{
 						box-shadow: 0 0 0 0 #000;
 						background-color: $enf-color-overlay;
 					}
-				}
+				}*/
 			}
 		}
 	}

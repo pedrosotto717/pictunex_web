@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
+	<title>Pictunex | Sign Up</title>
+	<link rel="stylesheet" href="assets/css/sign-in.css">
+
+</head>
+<body>
+	<div class="modal_container">
+		<div class="modal__redirect">
+			<div class="icon">
+				<span class="fa fa-times"></span>
+			</div>
+			<div>
+				<p class="msg">Error</p>
+			</div>
+		</div>
+	</div>
+			
+	<div class="container">
+
+
+		<div class="container-left">
+			<div class="slide">
+				<div class="slide__item is-active"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+				<div class="slide__item"></div>
+			</div>
+
+			<div class="msg-welcome">
+
+				<div class="logo">
+					<span class="logo-px main"></span>
+				</div>
+
+				<h2 class="msg-welcome__title">Welcome to Pictunex</h2>
+
+				<div class="msg-welcome__content">
+					<div class="invitation">
+						<span class="normal">Join Us</span>
+						<span class="and color-rev">And</span>
+					</div>
+
+					<span class="slogan color-rev"> Pixele your World</span>
+				</div>
+				
+				<a class="btn-home btn-main" href="index.html">HOME</a>
+			</div>
+		</div>
+		
+		
+		
+		<div class="container-right">
+			<button class="btn-back btn btn-main">
+				<a class="btn fa fa-arrow-left" href="index.html"></a>
+			</button>
+			<div class="form-sign-in">
+				<div class="title">
+					<p>Sign Up</p>
+				</div>
+
+				<div class="form">
+					<form id="form-sign-in">
+						
+						<label for="firstName">FIRST NAME</label>
+						<input type="text" name="firstName" id="firstName" autocomplete="off" placeholder="Enter Your First Name" pattern="[a-zA-Z]{2,10}" required="required">
+					
+
+						<label for="lastName">LAST NAME</label>
+						<input type="text" name="lastName" id="lastName" autocomplete="off" placeholder="Enter Your Last Name" pattern="[a-zA-Z]{2,15}" required="required">
+
+						<label for="username">USERNAME <sub>(only letters, numbers, and underscores)</sub></label>
+						<input type="text" name="username" id="username" autocomplete="off" placeholder="Username" pattern="[a-zA-Z0-9_]{5,15}" minlength="4" required="required">
+
+						<label for="password">PASSWORD <sub>(min. 8 char)</sub></label>
+						<input type="password" name="password" id="password" autocomplete="off" placeholder="********"  minlength="8" required="required">
+
+						<label for="passwordConfirm">CONFIRM PASSWORD</label>
+						<input type="password" name="passwordConfirm" id="passwordConfirm" autocomplete="off" placeholder="********" minlength="8" required="required">
+
+
+						<label class="conditions">
+						<input type="checkbox" name="conditions" id="conditions" required="required">
+						I gree Termines and Conditions 
+						</label>
+
+						<button class="btn" type="submit">CREATE ACCOUNT</button>
+					</form>
+				</div>
+
+				<a class="btn btn-main" href="login.html">Login</a>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+	<link rel="stylesheet" href="./assets/css/font-awesome.css">
+	<script src="./assets/js/modules/config.js"></script>
+	<script src="./assets/js/modules/crypter.js"></script>
+	<script src="assets/js/modules/msg.js"></script>
+	<script src="./assets/js/signin.js" type="module"></script>
+</body>
+</html>

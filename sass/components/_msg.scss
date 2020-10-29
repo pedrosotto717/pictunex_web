@@ -1,0 +1,57 @@
+
+//////////////////////// Modal Alerts //////////////////////////
+.modal_container{
+	z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.45);
+	min-width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.2s linear 0.1s;
+}
+
+
+.modal_container.is-active{
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal_container.is-active .modal__redirect{
+	/*animation: bounce 0.5s ease-in-out alternate forwards;*/
+	transform: scale(1) translate(0);
+}
+
+.modal__redirect{
+	width: 550px;
+	height: 400px;
+	min-width: 400px;
+	min-height: 300px;
+	box-shadow: 0 0 5px 0 #000;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 5px;
+	transform: scale(0.35) translateY(-110%);
+	transition: all 0.35s ease-in-out 0.3s;
+	/*transition: all 0.3s ease-in-out 0.3s;*/
+	font-size: 1.6em;
+	text-align: center;
+}
+
+@keyframes bounce{
+	95%{
+		transform: scale(1.1) translateY(10%);
+	}
+	100%{
+		transform: scale(1) translateY(0);
+	}
+}

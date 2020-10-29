@@ -3,7 +3,7 @@
 //===================================================
 
 .slide{
-    $num-slides: 7;
+    $num-slides: 9;
 
     grid-row: 1 / -1;
     grid-column: 1 / -1;
@@ -27,7 +27,7 @@
         z-index: 10;
 
         background-size: cover;
-        background-position: 25% center;
+        background-position:center;
         clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
         transition: clip-path 1.3s ease-in-out 0.1s;
 

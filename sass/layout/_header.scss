@@ -64,6 +64,10 @@
     
     &.is-search{
         @include is-search();
+
+        &.active{
+            background: $color-secondary;
+        }
     }
 
     @include mq(md){

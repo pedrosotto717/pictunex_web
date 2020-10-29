@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon.ico">
+	<title>Pictunex | DashBoard</title>
+	
+	<style type="text/css">
+		*{
+			/* border: 1px solid #eceff1 !important; */
+		}
+		h1{
+			text-align: center;
+			font-size: 3rem;
+			font-weight: bold;
+			padding: 2em;
+		}
+	</style>
+	<link rel="stylesheet" href="../assets/css/dashboard.css">
+	<script src="../assets/js/modules/auth.js"></script>
+	<script src="../assets/js/modules/config.js"></script>
+	<script src="../assets/js/modules/msg.js"></script>
+	<script>
+		async function verifySession(redirect, getUserData) {
+			const TKN = await auth.verifyToken(getUserData || false) 
+			// debugger
+			if(TKN.status === false && TKN.code === 0 && redirect === true){
+
+				window.location.href  = "../login.html"
+
+			}else if(TKN.status === false && TKN.code === 0 && redirect === false){
+
+				Msg.showMsg("SESSION INVALID",()=>{
+					window.location.href  = "../login.html"
+				});
+
+			}else if(TKN.status === false && TKN.code === "-1"){
+
+				Msg.showMsg("SESSION EXPIRED",()=>{
+					window.location.href  = "../login.html"
+				});
+
+			}else if(TKN.status === true && TKN.code === 200 && getUserData === true){
+
+				this.userData = TKN.response
+				sessionStorage.setItem("USER_ID",TKN.response.user_id)
+
+			}
+		}
+		verifySession(true,true)
+	</script>
+</head>
+
+<body>
+	<div class="modal_container">
+		<div class="modal__redirect">
+			<div>
+				<p class="msg">An active session already exists</p>
+				<p>Redirect to ...</p>
+			</div>
+		</div>
+	</div>
+
+	<main class="container-grid">
+
+		<div class="navbar">
+			<button class="btn-hamburguer btn-menu">
+				<span class="line"></span>
+			</button>
+
+			<div class="navbar__logo">
+				<div class="logo-container">
+					<span class="logo-px main"></span>
+				</div>
+				<span class="page-name">Pixtunex</span>
+			</div>
+
+			<div class="profile">
+				<span class="username">Pedro Soto</span>
+
+				<button class="profile__alias">
+				</button>
+			</div>
+		</div>
+
+		<nav class="menu-container">
+			<ul class="menu">
+				<li class="menu__item">
+					<a class="btn btn-main btn--active" href="#/home">
+						<span class="fa fa-home"></span>
+						Home
+					</a>
+				</li>
+
+				<li class="menu__item">
+					<a class="btn btn-main" href="#/search">
+						<span class="fa fa-search"></span>
+						Search
+					</a>
+				</li>
+
+				<li class="menu__item">
+					<a class="btn btn-main" href="#/images">
+						<span class="fa fa-image"></span>
+						Images
+					</a>
+				</li>
+
+				<li class="menu__item">
+					<a class="btn btn-main" href="#/upload">
+						<span class="fa fa-upload"></span>
+						Upload
+					</a>
+				</li>
+
+				<!-- <li class="menu__item">
+					<a class="btn btn-main" href="#home">
+						<span class="fa fa-config"></span>
+						Config
+					</a>
+				</li> -->
+
+				<li class="menu__item">
+					<a class="btn btn-main" href="#/logout">
+						<span class="fa fa-sign-out-alt"></span>
+						Log Out
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="content-container">
+			<div class="container-1200">
+				<section class="content" id="content">
+				</section>
+			</div>
+		</div>
+	</main>
+
+	<link rel="stylesheet" href="../assets/css/font-awesome.css">
+	<script src="../assets/js/modules/crypter.js"></script>
+	<script src="../assets/js/modules/btn-hamburguer.js"></script>
+	<script type="module" src="../assets/js/dashboard.js"></script>
+</body>
+</html>

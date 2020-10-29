@@ -106,7 +106,7 @@ class lightBox{
 	
 			obj.categories.forEach( (c) => {
 				let $li = document.createElement('li')
-				$li.classList.add('mark-c')
+				$li.classList.add('mark-c','btn-main')
 				let $a = `<a class="link-category" href="#${c}">${c}</a>`
 				$li.insertAdjacentHTML("afterbegin",$a)
 				$categories.appendChild($li)

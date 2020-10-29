@@ -3,7 +3,13 @@
 //====================================================
 %btn--active{
     color: #fff;
-    background-color: $enf-color-overlay;
+	/*box-shadow: inset 10em 0 $enf-color-overlay;*/
+    /*transition: box-shadow .65s ease 0;*/
+
+    &:before{
+        transition: all .35s ease 0s;
+        transform: scaleX(1.1);
+    }
 }
 
 .btn{
@@ -11,13 +17,55 @@
     display: flex;
     flex-wrap: nowrap;
     transition: all $transition-global;
-    border-radius: 1px;
+    //border-radius: 1px;
     cursor: pointer;
     background: transparent;
 
     &-main{
+        overflow: hidden;
         @extend .btn;
+        position: relative;
+		/*box-shadow: inset 0 0 $enf-color-overlay;*/
+	    /*transition: box-shadow 0.45s ease .4s;*/
+
+
         &.btn--active{
+            @extend %btn--active;
+        }
+        
+        &:before{
+            content: "";
+            background-color: $enf-color-overlay;
+            background-repeat: no-repeat;
+
+
+            /*background: linear-gradient( -25deg, $enf-color,
+                              $enf-color-overlay,
+                              $enf-color),
+                        linear-gradient( -45deg, $enf-color-overlay,
+                              $enf-color-overlay);*/
+
+            /*background: linear-gradient( -25deg, $enf-color-overlay ,
+                              $enf-color,
+                              $enf-color-overlay),
+                        linear-gradient( 25deg, $enf-color-overlay ,
+                              $enf-color,
+                              $enf-color-overlay),
+                        linear-gradient( 90deg, $enf-color-overlay ,
+                              $enf-color,
+                              $enf-color-overlay);*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scaleX(0);
+            transform-origin: left center;
+            z-index: -1;
+            transition: all .3s ease 0.3s;
+        }
+
+        &:hover{
             @extend %btn--active;
         }
     }
