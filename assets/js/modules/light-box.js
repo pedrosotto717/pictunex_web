@@ -47,25 +47,19 @@ class lightBox {
 	}
 
 	prev() {
-		console.log("PREV::",this.currentImg)
 		if ((this.currentImg - 1) >= 0) {
 			this.currentImg--
 		} else {
-			console.log(this.listGalleryElements, "<-1")
 			this.currentImg = this.listGalleryElements.length - 1
-			console.log(this.currentImg, "<-1")
 		}
 		const element = this.findElementById()
-		console.log(element)
 		const obj = this.subObj(element)
 		this.loadView(obj)
 	}
 
 	next() {
-		console.log(this.currentImg)
 		if ((this.currentImg + 1) < this.listGalleryElements.length) {
 			this.currentImg++
-			console.log("yes")
 		} else {
 			this.currentImg = 0
 		}
@@ -78,7 +72,6 @@ class lightBox {
 	findElementById() {
 		const next = document.querySelector(`[data-imgid="${this.currentImg}"] .masonry-details`)
 			|| document.querySelector(`.gallery__item[data-imgid="${this.currentImg}"]`)
-		console.log("AQUI-find", next, this.currentImg)
 		return next
 	}
 
@@ -118,13 +111,11 @@ class lightBox {
 				$categories.appendChild($li)
 			});
 
-			if(this.dsh==false)
+			if (this.dsh == false)
 				this.currentImg = obj.id
 			else
 				this.currentImg = obj.idPag
 
-			console.log("OBJ->", obj)
-			console.log("setID", this.currentImg)
 		} else
 			this.error = true
 	}
@@ -133,7 +124,6 @@ class lightBox {
 	activeLB() {
 		if (this.error === false) {
 			this.container.classList.add("active")
-			console.log('active')
 		} else
 			this.error = false
 	}

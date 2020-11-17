@@ -21,8 +21,6 @@ const controllers = {
 
         const arrImages = await admin.getLastFiveimages(5)
         // console.clear()
-        console.log(arrImages)
-
         if (arrImages.length > 0) {
 
             $container.insertAdjacentHTML("beforeend", `
@@ -122,8 +120,6 @@ const controllers = {
                 ev.preventDefault()
 
                 const keyWord = ev.target.inputSearch.value
-                // console.clear()
-                console.log(keyWord)
 
                 try {
 
@@ -203,8 +199,6 @@ const controllers = {
                 const filterImg = document.getElementById("filter_images")
                 const category = [...JSON.parse(sessionStorage.CATEGORIES).categories]
 
-                console.log(category)
-
                 category.forEach((el, index) => {
                     const op = document.createElement("option")
                     op.setAttribute("value", el)
@@ -214,7 +208,6 @@ const controllers = {
 
 
                 filterImg.addEventListener("change", async ev => {
-                    console.log(ev.target.value)
 
                     if (ev.target.value === "all") {
                         $gallery.innerHTML = ""
@@ -242,16 +235,13 @@ const controllers = {
                         }
                         // code for get imgs for category
                         admin.pagination($gallery)
-                        console.log("FLAG", categoriesImg)
                     }
                 });
 
 
             } catch (e) {
                 const lhref = location.href.split("#")[0]
-                console.log(lhref)
                 window.location.replace(lhref)
-                console.log(e);
                 return 0;
             } finally {
                 return 0;
@@ -357,7 +347,7 @@ const controllers = {
                 if (file.type == "" || file.type.match(/image/) == false) {
                     $msgUpload.textContent = "the file Upload isn't Image"
                     $msgUpload.classList.add("is-active")
-                    
+
                     window.scrollTo({
                         behavior: "smooth",
                         top: $topMsg
@@ -375,12 +365,11 @@ const controllers = {
                     name_img.value = fileName.replace(/[\@\#\\\¡\º\!\|*?¿+:;+=+>+<\{}\[\]\.+``´´\/\'\"\+^\¨]/gi, "")
                     $container_details.setAttribute("class", "container_details active")
 
-                    console.log("TOP:",img_loaded.getBoundingClientRect().y)
 
-                    setTimeout( () => window.scrollTo({
+                    setTimeout(() => window.scrollTo({
                         behavior: "smooth",
                         top: img_loaded.getBoundingClientRect().y - 80
-                    }),500);
+                    }), 500);
                 }
             }
         });
@@ -398,7 +387,6 @@ const controllers = {
 
         $form.addEventListener("submit", ev => {
             ev.preventDefault()
-            console.log(ev.target)
 
             if ([...ev.target.querySelectorAll(".tag__item input:checked")].length == 0) {
                 $msgUpload.textContent = "Please add a categorie to Images"
@@ -470,8 +458,6 @@ const controllers = {
 
     async saveImage(dataImage, $container) {
         //code for edit & save image
-        console.clear()
-        console.log(dataImage)
         try {
             //declaration of ELEMENTS
             const $form = document.createElement("form"),
@@ -538,7 +524,6 @@ const controllers = {
 				</button>
 			`;
 
-            console.log(dataImage.keywords)
             $form.insertAdjacentHTML("beforeend", $tpl);
 
             $container.innerHTML = ""
@@ -595,7 +580,6 @@ const controllers = {
 
                 admin.uploadImage(ev.target, "update", dataImage.id)
                     .then(r => {
-                        console.log(r)
                         if (r) {
                             $container.classList.remove("active")
 
@@ -705,7 +689,6 @@ const controllers = {
     },
 
     notFound($container) {
-        console.log("NOT_FOUND", $container)
         $container.innerHTML = ""
         $container.insertAdjacentHTML("beforeend", `
         <div class="not_found_container">
@@ -763,23 +746,19 @@ const controllers = {
         const $form = $container.querySelector("#form-profile")
 
         $form.addEventListener("change", ev => {
-            console.log("OK__", ev.target)
             if (ev.target.matches("#user_image_ico")) {
                 const file = ev.target.files[0],
                     url = URL.createObjectURL(file);
-                console.log(url)
 
                 if (file.type == "" || file.type.match(/image/) == false) {
                     Msg.showMsg("the file Upload isn't Image", "alert");
                     ev.target.reset()
                 } else {
                     const $img_loaded_icon = ev.target.parentNode.querySelector(".profile__icon")
-                    console.log($img_loaded_icon)
                     $img_loaded_icon.style.backgroundImage = `url(${url})`
                 }
             } else if (ev.target.matches("input[type='text']")) {
                 ev.target.classList.add("notification")
-                console.log(ev.target)
             }
         });
 
@@ -787,7 +766,6 @@ const controllers = {
 
         $form.addEventListener("keyup", ev => {
             if (ev.target.matches("[type='password']")) {
-                console.log("PASSWORD", ev.target)
                 const val1 = password.value
                 const val2 = passwordConfirm.value
 
@@ -807,10 +785,6 @@ const controllers = {
         $form.addEventListener("submit", ev => {
             ev.preventDefault()
 
-            console.log(ev.target)
-            console.log(ev.target.user_image_ico, "A")
-            console.log(ev.target.user_image_ico.files[0], "B")
-
             if (ev.target.user_image_ico.files[0] != undefined) {
                 if (ev.target.user_image_ico.files[0].size > 2000000) {
                     Msg.showMsg("The Image exede the 2MB", "alert", "alert")
@@ -825,7 +799,6 @@ const controllers = {
             const $fileIcoUser = ev.target.user_image_ico.files[0] === undefined
                 ? 0 : ev.target.user_image_ico.files[0]
 
-            console.log($fileIcoUser, "C")
 
             admin.updateUser(ev.target, $fileIcoUser)
                 .then(res => {
