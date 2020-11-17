@@ -127,19 +127,15 @@ addEventListener("load", () => {
 		}
 	});
 
-	let lb = new lightBox(".modal", '.modal-gallery',true)
-	console.log(lb)
+	let lb = new lightBox(".modal", '.modal-gallery', true)
 
 	lb.init(".modal-close", ".prev-img", ".next-img", () => {
-		console.log("TRUE :: !1")
 
 		const containerGallery = document.body
 
 		containerGallery.addEventListener("click", ev => {
-			console.log("TRUE :: !2")
 
 			if (ev.target.matches(".gallery__item")) {
-				console.log("TRUE :: !3")
 				lb.load(ev.target, '.gallery__item')
 			}
 		});

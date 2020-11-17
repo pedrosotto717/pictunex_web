@@ -12,11 +12,13 @@
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.25s linear 0.35s;
+	overflow: auto !important;
 	
 	&.active{
 		transition: all 0.3s linear 0s;
 		opacity: 1;
 		visibility: visible;
+		overflow: auto;
 		.modal-gallery{
 			transition: all 0.55s ease 0.5s;
 			transform: translateY(0);

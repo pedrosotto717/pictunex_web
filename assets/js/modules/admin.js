@@ -12,7 +12,6 @@ const admin = {
 		this.loadCategories()
 			.then(res => {
 				this.categoriesImg = res
-				// console.log("THIS ",this)
 			});
 
 		this.allImages = []
@@ -25,13 +24,10 @@ const admin = {
 
 	initPagination(container, callback = null) {
 
-		console.log(this.allImages, "this.all")
-
 		const containerPagination = document.querySelector(container)
 		containerPagination.innerHTML = "";
 
 		if (this.allImages.length > 0) {
-			console.log("EXECUTE")
 
 			if (this.allImages.length == 1) {
 				containerPagination.innerHTML = "";
@@ -65,7 +61,6 @@ const admin = {
 					const value = parseInt(ev.target.dataset.pag)
 
 					if (value != self.pag) {
-						console.log(self.pag)
 						self.pag = value
 						sessionStorage.setItem("CURRENT_PAG", self.pag)
 
@@ -96,13 +91,11 @@ const admin = {
 					if (ev.target.getBoundingClientRect().x >= Lxi && ev.target.getBoundingClientRect().x <= Lxf) {
 
 						// Emulate prev-btn
-						console.log(ev.target.getBoundingClientRect().x, ev.target.getBoundingClientRect().x)
 						containerPag.scrollLeft -= (ev.target.getBoundingClientRect().width + 0) * 2
 					}
 					if (ev.target.getBoundingClientRect().x >= Rxi && ev.target.getBoundingClientRect().x <= Rxf) {
 
 						// Emulate next-btn
-						console.log(ev.target.getBoundingClientRect().x, ev.target.getBoundingClientRect().x)
 						containerPag.scrollLeft += (ev.target.getBoundingClientRect().width + 0) * 2
 					}
 				}
@@ -141,16 +134,11 @@ const admin = {
 	},
 
 	async loadAllImg($container = null) {
-		console.info('::USER_ID::', this.user_id)
-
-
 		if (this.user_id == null || this.user_id == undefined || this.user_id.length == 0) {
 			return 0;
 		}
 
 		const res = await this.API.getAll(this.user_id)
-		// console.clear()
-		console.log(res)
 
 		if (res != null && res.length > 0) {
 			this.pag = 0
@@ -177,7 +165,6 @@ const admin = {
 		}
 
 		const res = await this.API.getByCategory(category, this.user_id)
-		console.log(res)
 
 		if (res != null && res.length > 0) {
 			this.pag = 0
@@ -206,7 +193,6 @@ const admin = {
 		//FLAG LETTERS, ESPECIALS CHARS
 
 		const res = await this.API.search(keyW, this.user_id)
-		console.log(res)
 
 		if (res != null && res.length > 0) {
 			this.pag = 0
@@ -276,11 +262,9 @@ const admin = {
 
 	async uploadImage(form, actionParam, idimg = null) {
 		try {
-			console.log("IN")
 			const formDataEnc = new FormData()
 
 			const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN") || false;
-			console.log("ACCESS_TOKEN")
 
 			if (ACCESS_TOKEN === false) {
 				localStorage.clear()
@@ -300,11 +284,8 @@ const admin = {
 				})
 				.map(el => el.value)
 
-			console.log(document.getElementsByClassName("tag__item"))
-
-			console.log(categoriesArr)
 			let categoriesString = this.putC(categoriesArr);
-			console.log(categoriesString)
+
 			if (actionParam == "create")
 				formDataEnc.append("action", "create")
 
@@ -312,13 +293,6 @@ const admin = {
 			formDataEnc.append("keywords", form.keywords.value.replace('-', ' '))
 			formDataEnc.append("categories", categoriesString)
 			formDataEnc.append("src", form.images_file.files[0] == undefined ? null : form.images_file.files[0])
-			console.log(form.images_file.files[0])
-			console.log(formDataEnc.get("action"))
-			console.log(formDataEnc.get("name"))
-			console.log(formDataEnc.get("keywords"))
-			console.log(formDataEnc.get("categories"))
-			console.log(formDataEnc.get("src"))
-
 
 			let response = null
 
@@ -338,7 +312,6 @@ const admin = {
 
 			if (response.status === 201) {
 				const responseParse = await response.json()
-				console.log(responseParse)
 				if (responseParse.code == 201)
 					return true;
 			}
@@ -393,9 +366,7 @@ const admin = {
 		if (newPassWord !== 0 && passWord !== 0) {
 			passWord = await crypter.sha256(passWord)
 			newPassWord = await crypter.sha256(newPassWord)
-			console.log("passWord",passWord)
-			console.log("newPassWord",newPassWord)
-		}else passWord = 0
+		} else passWord = 0
 
 		const newUser = {
 			firstName: formData.get("firstName"),
@@ -423,17 +394,6 @@ const admin = {
 
 		const headers = new Headers()
 		headers.append("AUTHORIZATION-TOKEN", JWT)
-		// headers.append("Content-Type", "application/x-www-form-urlencoded")
-
-		// console.clear()
-		console.log(":::::::::::DATS::::::::::")
-		console.log('__TOKEN__')
-		console.log(headers.get("AUTHORIZATION-TOKEN"))
-
-		console.log("__FROM_DATA__")
-		console.log(final)
-		console.log(final.get("user"));
-		console.log(final.get("ico"));
 
 		const response = await fetch(config.getURL_API() + `/auth/update/`, {
 			method: "POST",

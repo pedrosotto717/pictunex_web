@@ -14,7 +14,6 @@ const login = {
 
     headers.append("host", "localhost")
     headers.append("AUTHENTICATION", user)
-    console.log(user)
 
     const res = await fetch(config.getURL_API() + "/auth/token", {
       method: "POST",
@@ -23,7 +22,6 @@ const login = {
 
     if (res.status === 200) {
       const resParse = await res.json()
-      console.log(resParse);
       localStorage.setItem("ACCESS_TOKEN", resParse.access_token);
       return true;
     } else if (res.status === 500) {
@@ -63,22 +61,21 @@ addEventListener("load", () => {
     ev.preventDefault()
 
     const session = await login.isRedirect()
-    console.table("SSESION FINAL____", session)
 
     if (session == false) {
 
       login.auth(ev.target)
         .then(res => {
 
-          if(res===true)
+          if (res === true)
             location.href = "./dashboard"
-          else if(res == 500){
-            Msg.showMsg("500 Internal Error","error", ()=>{
+          else if (res == 500) {
+            Msg.showMsg("500 Internal Error", "error", () => {
               ev.target.reset()
               username.focus()
             });
-          }else
-          Msg.showMsg("User Or Password Invalid","error", ()=>{
+          } else
+            Msg.showMsg("User Or Password Invalid", "error", () => {
               ev.target.reset()
               username.focus()
             });
