@@ -1,16 +1,12 @@
-/*body{
-	min-height: 100vh;
-	height: 100vh;
-}
-*/
+
 $height-navbar: 68px;
 $width-menu: 100px;
 
 .container-grid{
+	position: sticky;
 	width: 100%;
 	min-width: 100%;
 	height: auto;
-	min-height: 100%;
 
 	display: grid;
 	grid-template-columns: $width-menu 1fr;
@@ -24,12 +20,18 @@ $width-menu: 100px;
 			box-shadow: 0 0 10px 0 #fff;
 		}
 	}
+
+	@include mq(md){
+		.content-container{
+			padding: 0;
+		}
+	}
 }
 
 .menu-container{
 	top: $height-navbar;
-	min-height: 100vh;
-	height: auto;
+	min-height: calc(100vh - 68px);
+	height: 100%;
 	grid-column: 1 / span 1;
 	grid-row: 2 / -1;
 	background: $color-secondary;
@@ -37,15 +39,13 @@ $width-menu: 100px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	-ms-align-items: center;
 	z-index: 1;
+	position: sticky;
 
 	.menu{
 		width: 100%;
-		height: auto;
-		position: fixed;
+		height: 100%;
 		max-width: $width-menu;
-		overflow: hidden;
 
 		&__item{
 			min-width: 100%;
@@ -86,11 +86,9 @@ $width-menu: 100px;
 
 	@include mq(lg){
 		padding-top: 1vh;
-		position: sticky;
-		top: 0;
+		position: fixed;
+		top: $height-navbar;
 		left: 0;
-		/*min-width: 200px;*/
-		/*width: 25vw;*/
 		transform: translate3d(-100%,0,0);
 		-webkit-transition: transform 0.5s ease;
 		-o-transition: transform 0.5s ease;
@@ -102,7 +100,6 @@ $width-menu: 100px;
 		}
 		
 		.menu{
-			position: absolute;
 			max-width: auto;
 			min-width: 100%;
 			width: 100%;
@@ -110,7 +107,7 @@ $width-menu: 100px;
 	}
 }
 
-.avatar{
+/*.avatar{
 	color: #fff;
 	text-align: center;
 	margin: 0 auto;
@@ -133,12 +130,11 @@ $width-menu: 100px;
 	footer{
 		font-size: 1em;
 	}
-}
+}*/
 
 .content-container{
 	grid-row-start: 2;
 	grid-column: 2 / -1;
-	/*background-color: #fafafa;*/
 	padding: 2em 1em;
 	min-width: 100%;
 	width: 100%;
@@ -146,27 +142,26 @@ $width-menu: 100px;
 
 .content{
 	background-color: #fff;
-	box-shadow: 0 0 2px 0 rgba(#000,.5);
 	border-radius: 5px;
 	padding: 0.25em;
+	overflow: hidden;
 }
 
 .navbar{
 	grid-column: 1 / -1;
 	top: 0;
 	left: 0;
-	position: sticky;
+	position: fixed;
 	height: $height-navbar;
 	min-width: 100vw;
 	background: $color-secondary;
-	/*position: relative;*/
 	display: flex;
 	-ms-align-items: center;
 	align-items: center;
 	justify-content: space-between;
-	z-index: 100;
+	z-index: 110;
 	color: #fff;
-	padding-right: 2rem;
+	padding-right: 3rem;
 
 	.btn-menu{
 		display: none;
@@ -201,23 +196,156 @@ $width-menu: 100px;
 	}
 
 	.profile{
-		margin: 0.45rem;
+		margin: 1rem;
+		position: relative;
+		z-index: 200;
 
 		&__alias{
+			position: relative;
 			width: 45px;
 			height: 45px;
 			margin: 0.25em;
 			padding: 0.75em;
 			border-radius: 50%;
-			background: url('../../static/img/user.png'), #fff;
+			background: url('../../static/img/cuenta.svg'), transparent;
 			background-position: center, center;
 			background-size: cover, cover;
+			box-shadow: 0 0 2px 0 #000;
+			z-index: 200;
+
+			&::after{
+				content: "\f107";
+				display: inline-flex;
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translate3d(0,-50%,0);
+
+				display: inline-block;
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+				line-height: 1;
+
+				font-family: 'Font Awesome 5 Free';
+  				font-weight: 900;
+  				font-size: inherit;
+  				margin: auto 0.5rem;
+  				margin-right: -35%;
+  				color: #fff;
+			}
 		}
+
+		.profile__menu{
+			position: absolute;
+			top: 100%;
+			right: 0;
+			background: linear-gradient(90deg, #fafafa 50%, #FDFDFD 50%);
+			box-shadow: 0 1px 4px 0 rgba(#000,0.75);
+
+			min-width: 240px;
+			min-height: 300px;
+			z-index: 200;
+			
+			overflow: hidden;
+			
+			opacity: 0;
+			visibility: hidden;
+
+			transform: translate3d(0,-20%,0);
+			transition: all $transition-global;
+			/*transition: transform 0.3s ease 0s;*/
+			/*transition: opacity 0.4s ease 0.1s;*/
+			/*transition: visibility 0.4s ease 0.3s;*/
+
+			align-items: center;
+			border-radius: 2px;
+
+			.profile_alias_img{
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				object-fit: cover;
+				object-position: center;
+				box-shadow: 0 0 3px 1px rgba(#000,0.5);
+				margin: 0.25rem;
+				margin-top: 1rem;
+				z-index: 200;
+				position: absolute;
+				top: 0.5rem;
+			}
+
+			.username{
+				padding: 0.25rem;
+				display: flex;
+				margin: 0;
+
+				align-items: center;
+				text-align: center;
+				justify-content: center;
+				width: 100%;
+				height: 45px;
+				color: #000;
+				font-size: 1.15rem;
+				z-index: 200;
+			}
+
+			ul {
+				width: 100%;
+				z-index: 200;
+				position: absolute;
+				bottom: 0;
+
+
+				.profile__menu-item{
+					height: 55px;
+					background-color: #fff;
+					position: relative;
+					text-align: center;
+					
+					a{
+						position: relative;
+						height: 100%;
+						width: 100%;
+						
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						box-shadow: 0 1px 2px 0 rgba(#000,0.5);
+						font-size: 16px;
+
+						span{
+							display: inline-flex;
+							margin: auto;
+							margin-left: -0.5rem;
+							margin-right: 0.5rem;	
+						}
+
+					}
+					
+					
+					&:hover{
+						background-color: $enf-color-overlay;
+						color: #fff;
+					}
+
+				}
+			}
+		}
+
+		
+		&.is-active .profile__menu{
+			opacity: 1;
+			visibility: visible;
+			transform: translate3d(0,0,0);
+		}
+
 	}
 
 	.profile .username{
 		margin-right: 0.5rem;
 		font-size: 1rem;
+		position: relative;
 	}
 
 	@include mq(lg){
@@ -241,7 +369,7 @@ $width-menu: 100px;
 		}
 
 		.profile{
-			margin-right: -1rem;
+			margin-right: 0.5rem;
 
 			.username{
 				display: none;
@@ -256,15 +384,6 @@ $width-menu: 100px;
 }
 
 
-@keyframes bg-btn-login {
-	 @for $i from 1 through 100{
-        #{$i}%{
-            background-position: $i * -10px;
-        }
-    }
-}
-
-
 /* --------------  Searh Bar  -------------- */
 .search-container{
 	max-width: 1000px;
@@ -274,5 +393,120 @@ $width-menu: 100px;
 
 	form{
 		font-family: $font-second;
+		position: relative;
+		#inputSearch:focus{
+			border: none !important;
+		}
+
+		.search-input, button[type]{
+			transition: all $transition-global;
+		}
+
+		.search-input:focus,
+		.search-input:focus ~ button[type]{
+			box-shadow: 0 1px 1.7px 0 rgba(#000,0.75);
+		}
 	}
 }
+
+#filter_images{
+	border: none;
+	outline: none;
+	box-shadow: 0 0 1.5px 0 rgba(#000,0.5),
+				      0 1px 1px 0 rgba(#000,0.5);
+}
+
+select {
+  &:focus {
+    outline: 0;
+  }
+}
+
+form{
+	.input{
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		height: 45px;
+		padding: 5px;
+		margin-bottom: 2em;
+		background-color: #fff;
+	}
+
+	input{
+		min-height: 100%;
+		padding: 5px;
+		width: 100%;
+		font-family: $font-aux;
+		font-weight: bold;
+		transition: all $transition-global;
+		color: #000;
+	}
+
+	input:focus{
+		border: 1px solid rgba(#000,1);
+	}
+
+	input.notification:valid{
+		border: 1px solid $enf-color-overlay;
+	}
+
+	input.notification:invalid{
+		border: 1px solid #E50000;
+	}
+}
+
+
+/* -------------------- NOT FOUND ---------------------- */
+
+.not_found_container{
+	padding: 1rem;
+	max-width: 800px;
+	width: 100%;
+	height: auto;
+	margin: auto;
+	box-shadow: 0 1px 2px 0 rgba(8, 8, 8, 0.5);
+	background: linear-gradient(180deg, #fff 30%, $enf-color-overlay 30%);
+	margin-top: 10vh;
+	
+	.nf_404{
+		width: 100%;
+		height: 50%;
+		padding: 1rem;
+		text-align: center;
+		color: #fff;
+		font-size: 15em;
+		// text-shadow: 15rem 1rem linear-gradient(180deg, #fff 30%, $enf-color-overlay 30%);
+		// -webkit-text-stroke: 0.1px #000; 
+	}
+
+	.nf{
+		color: #fff;
+		font-size: 8em;
+		text-align: center;
+		width: 100%;
+		height: auto;
+		padding: 1rem;
+		font-weight: bold;
+	}
+
+	@include mq(lg){
+		font-size: 12px;
+		// background: linear-gradient(180deg, #fff 30%, $enf-color-overlay 30%);
+
+	}
+}
+
+// Pagination 
+.pagination{
+	margin-top: 2rem;
+	scroll-behavior: smooth;
+	
+	ul{
+		scroll-behavior: smooth;
+	}
+}
+.pagination ul button{
+	background-color: #f9f9f9;
+}
+

@@ -16,6 +16,30 @@
     }
 }
 
+.home-icon{
+    display: inline;
+    &::before{
+        content: "";
+        display: flex;
+        background-image: url("../../static/img/home.svg");
+        min-width: $icon-w * 1.8;
+        min-height: $icon-h * 1.8;
+        margin-bottom: 2px;
+    }
+    
+}
+
+.images-icon{
+    display: inline;
+    &::before{
+        content: "";
+        display: flex;
+        background-image: url("../../static/img/imgs.svg");
+        min-width: $icon-w * 1.8;
+        min-height: $icon-h * 1.8;
+    }
+}
+
 .download-icon{
     display: inline-flex;
     &::before{

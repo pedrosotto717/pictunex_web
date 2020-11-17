@@ -22,11 +22,13 @@
 @import 'components/modal-view-box-gallery';
 @import 'components/pagination';
 @import 'components/filters-category';
+@import 'components/scroll_to_top';
 
 
 // -- Layout
 @import 'layout/layout.util';
 @import 'layout/header';
+@import 'layout/footer';
 
 
 html{

@@ -30,12 +30,7 @@
                     
                     @include mq(md){
                         font-size: 1em;
-                    }
-                    
-                    @include mq_next(xl){
-                        font-size: 1.2em;
-                    }
-                    
+                    }                    
                     &:hover{
                         @extend .btn--active;
                     }
@@ -47,7 +42,6 @@
 
     @include mq(md){ // menu de navegacion en modo tableta
         transform: translateX(100%);
-        /*clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);*/
         flex: 1 1 100%;
         position: fixed;
         width: 100vw;
@@ -92,6 +86,9 @@
 
                     a{
                         min-width: 100%;
+                        &:before{
+                            display: none;
+                        }
                     }
                 }
             }
@@ -99,7 +96,6 @@
 
 
         &.is-active-menu{
-            /*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);*/
             transform: translateX(0);
             .nav-bar ul .nav__item {
                 transition: clip-path 0.8s ease 0.55s;

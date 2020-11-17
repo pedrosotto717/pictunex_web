@@ -16,20 +16,20 @@
 	.btn-pictunex{
 		position: fixed;
 		left: 2em;
-		top: 1em;
+		top: 1.2em;
 		transform: scale(0.9);
 		animation: in 1.5s ease forwards 4s;
-		transform: translate3d(0,-150%,0);
+		transform: translate3d(0,-155%,0);
 	} 
 
 	.btn-sign{
 		position: fixed;
-		right: 2em;
-		top: 1em;
+		right: 2.2em;
+		top: 1.3em;
 		color: #fff;
 		border: 1px solid $enf-color-overlay;
 		animation: in 1.5s ease forwards 4s;
-		transform: translate3d(0,-150%,0);
+		transform: translate3d(0,-155%,0);
 
 	}
 
@@ -65,6 +65,7 @@
 
 	@include mq(lg){
 		width: 680px;
+		margin-top: 80px;
 	}
 
 	@include mq(md){
@@ -90,8 +91,6 @@
 
 		.login__form{
 			flex: 100%;
-
-			//animation
 			transform-origin: center;
 			transform: rotateY(-180deg);
 		}
@@ -214,8 +213,8 @@
 	}
 
 	.btn-submit{
-		max-width: 200px;
-		width: 40%;
+		max-width: 130px;
+		width: 130px;
 		display: flex;
 		min-height: 40px;
 		position: relative;
@@ -230,16 +229,19 @@
 		color: #fff;
 		transition: all 0.5s ease;
 		font-weight: bold;
-		font-size: 1.1em;
+		font-size: 1.2em;
 		animation: bg-btn-login 5s linear infinite;
 		animation-play-state: paused;
-		transform: translateY(0);
+		transform: translateY(-1px) scale(1);
 		transform-origin: top center;
+		box-shadow: 0 2px 2px 0 rgba($enf-color-overlay,0),
+					0 3px 1px 0 rgba(#000,0);
 
 		&:hover{
-			transform: translateY(1px);
+			transform: translateY(2px)  scale(1.02);
+			box-shadow: 0 2px 2px 0 rgba($enf-color-overlay,0.75),
+						0 3px 1px 0 rgba(#000,0.4);
 			animation-play-state: running;
-			/*animation: bg-btn-login 5s linear infinite;*/
 		}
 	}
 }
@@ -291,7 +293,7 @@
 @keyframes bg-btn-login {
 	 @for $i from 1 through 100{
         #{$i}%{
-            background-position: $i * -10px;
+            background-position: ($i * -10px);
         }
     }
 }

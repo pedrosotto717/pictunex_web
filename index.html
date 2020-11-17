@@ -4,13 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="static/img/favicon.ico">
 	<title>Pictunex | Pixele your World</title>
 	<link rel="stylesheet" href="assets/css/main.css?0mmm">
 	<script src="main.js" type="module"></script>
 </head>
-
 
 <body class="loader">
 	<div class="loader-container">
@@ -18,22 +18,24 @@
 			<span class="logo-px main"></span>
 		</div>
 	</div>
-	<div class="header is-search-h"> <!-- is-search-h -->
+	<div class="header is-search-h">
+		<!-- is-search-h -->
 		<!-- header  -->
-		<header class="is-search"> <!-- is-search-h -->
+		<header class="is-search">
+			<!-- is-search-h -->
 			<div class="search-bar">
 
 				<!-- logo PICTUNEX -->
 				<div class="logo">
 					<span class="logo-px main"></span>
-					<span class="logo__title">Pictunex</span> 
+					<span class="logo__title">Pictunex</span>
 				</div>
-				
+
 				<!-- Search Box -->
 				<div class="search-container">
 					<button id="show-search-box" class="btn fa fa-search"></button>
 					<form class="formSearch search-box--nav">
-						<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
+						<input type="search" class="search-input" name="search" placeholder="Search" autocomplete="off">
 						<button type="reset"><span class="fa fa-times"></span></button>
 						<button type="submit"><span class="fa fa-search"></span></button>
 					</form>
@@ -52,8 +54,8 @@
 				<nav class="nav-bar">
 					<ul>
 						<li class="nav__item"><a class="btn-main btn--active" href="#">Home</a></li>
-						<li class="nav__item"><a class="btn-main"href="signUp.html">Sign Up</a></li>
-						<li class="nav__item"><a class="btn-main" href="login.html">Login</a></li>
+						<li class="nav__item"><a class="btn-main" target="_blank" href="signUp.html">Sign Up</a></li>
+						<li class="nav__item"><a target="_blank" class="btn-main" href="login.html">Login</a></li>
 					</ul>
 				</nav>
 
@@ -66,12 +68,12 @@
 			<!-- Search Box -->
 
 			<form class="formSearch search-box transparent">
-				<input type="search" class="search-input" name="search"  placeholder="Search" autocomplete="off">	
+				<input type="search" class="search-input" name="search" placeholder="Search" autocomplete="off">
 				<button type="reset"><span class="fa fa-times"></span></button>
 				<button type="submit"><span class="fa fa-search"></span></button>
 			</form>
 		</div>
-		
+
 		<!-- Slider -->
 		<div class="slide">
 			<div class="slide__item is-active"></div>
@@ -87,88 +89,154 @@
 	<div class="container-px">
 		<main>
 
-		<div class="filter-imgs container-px controller-container-h">
-			<button class="btn-prev-c btn-c">
-				<span class="fa fa-chevron-left"></span>
-			</button>
+			<div class="filter-imgs container-px controller-container-h">
+				<button class="btn-prev-c btn-c">
+					<span class="fa fa-chevron-left"></span>
+				</button>
 
-			<ul>
-			</ul>
+				<ul>
+				</ul>
 
-			<button class="btn-next-c btn-c">
-				<span class="fa fa-chevron-right"></span>
-			</button>
-		</div>
+				<button class="btn-next-c btn-c">
+					<span class="fa fa-chevron-right"></span>
+				</button>
+			</div>
 
-		<!-- #pictunex-gallery -->
-		<section class="pictunex-gallery masonry-layout">
-		</section>
-		<!-- #end pictunex-gallery -->
+			<!-- #pictunex-gallery -->
+			<section class="pictunex-gallery masonry-layout">
+			</section>
+			<!-- #end pictunex-gallery -->
 
-		<div id="modal-gallery" class="modal">
-			<button class="btn modal-close">
-				<span class="fa fa-times"></span>
-			</button>
-			<section class="modal-gallery">
-		
-				<div class="view-box-img">
-					<img src="./_img/12.jpg" alt="" class="current-img">
-				</div>
-			
-				<div class="info-img">
-					<div class="user-author">
-						<span class="fa fa-user"></span>
-						<span class="nickname">pedrosotto717</span>
+			<div id="modal-gallery" class="modal">
+				<button class="btn modal-close">
+					<span class="fa fa-times"></span>
+				</button>
+				<section class="modal-gallery">
+
+					<div class="view-box-img">
+						<img src="" alt="" class="current-img">
 					</div>
 
-					<div class="download-img">
-						<a class="btn-main btn--active btn-icon" href="#" download target="_blank" rel="nofollow">
-							<span>Download</span>
-							<span class="download-icon icon"></span>
-						</a>
-					</div>
-				</div>
+					<div class="info-img">
+						<div class="user-author">
+							<span class="fa fa-user"></span>
+							<span class="nickname">pedrosotto717</span>
+						</div>
 
-				<div class="categories">
+						<div class="download-img">
+							<a class="btn-main btn--active btn-icon" href="#" download target="_blank" rel="nofollow">
+								<span>Download</span>
+								<span class="download-icon icon"></span>
+							</a>
+						</div>
+					</div>
+
+					<div class="categories">
+						<ul>
+
+						</ul>
+					</div>
+
+					<div class="controllers-img">
+						<button class="prev-img">
+							<span class="fa fa-chevron-left"></span>
+						</button>
+
+						<button class="next-img">
+							<span class="fa fa-chevron-right"></span>
+						</button>
+					</div>
+
+				</section>
+			</div>
+
+			<div class="container-pagination">
+				<div class="pagination controller-container-h">
 					<ul>
-						
+
 					</ul>
 				</div>
+			</div>
 
-				<div class="controllers-img">
-					<button class="prev-img">
-						<span class="fa fa-chevron-left"></span>
-					</button>
-			
-					<button class="next-img">
-						<span class="fa fa-chevron-right"></span>
-					</button>
-				</div>
-			
-			</section>
-		</div>
+		</main>
 
-		<div class="container-pagination">
-			<div class="pagination controller-container-h">
+	</div>
+
+	<button class="btnToTop hide">
+		<!-- <span class="fa fa-chevron-up"></span> -->
+	</button>
+
+	<footer class="foo">
+		<div class="container-px footer">
+
+			<h3 class="footer__title">
+				<span class="logo-px main"></span>
+				<span class="logo__title">Pictunex</span>
+			</h3>
+
+			<div class="about">
+
+				<h3 class="about__title">About Us</h3>
+
+				<p>
+					The Pictunex Project is born as the idea
+					of a young developer, technology lover and design,
+					whose purpose in first instance was the only one project to pactice his skills
+					and contribute to his professional development...
+				</p>
+
+				<p>
+					But Everything was not there, with the passage of time, days and hours of development,
+					the idea grew and evolved in whats is today.
+					A Free platform to search, store and share images whithout copyright.
+					Which is currently nourished
+					by dozens of photographers, amateurs, photography lovers and pixels and various platform.
+				</p>
+
+			</div>
+
+			<div class="contact">
+				<h3 class="contact__title">Contact info</h3>
 				<ul>
-
+					<li>
+						<!-- <span class="fa fa-globe"></span> -->
+						<span class="color">Address:</span> <a href="http://maps.google.com">San Josecito, Tachira, Venezuela.</a>
+					</li>
+					<li>
+						<!-- <span class="fa fa-phone"></span> -->
+						<span class="color">Tlf:</span> +58 424-7542683
+					</li>
+					<li>
+						<!-- <span class="fa fa-mail-bulk"></span> -->
+						<span class="color">Email:</span> pedrosotto717@gmail.com
+					</li>
+					<li>
+						<!-- <span class="fa fa-github"></span> -->
+						<span class="color">GitHub:</span> <a href="http://google.com">pedrosotto717</a>
+					</li>
 				</ul>
 			</div>
+
+			<div class="copy">
+				<p>
+					<span class="firt_copy">© 2020 PICTUNEX. All rights reserved</span>
+					<span class="endl">|</span> Designed by Pedro J. Soto A.</p>
+			</div>
 		</div>
-	
-		</main>
-	</div>
+	</footer>
 
 	<link rel="stylesheet" href="./assets/css/font-awesome.css">
 	<script src="./assets/js/modules/config.js"></script>
-	<script src= "./assets/js/modules/btn-hamburguer.js"></script>
-	<script src= "./assets/js/modules/masonry-px.js"></script>
-	<script src= "./assets/js/modules/light-box.js"></script>
+	<script src="./assets/js/modules/btn-hamburguer.js"></script>
+	<script src="./assets/js/modules/masonry-px.js"></script>
+	<script src="./assets/js/modules/light-box.js"></script>
+	<script src="./assets/js/modules/scroll_to_top.js"></script>
+
 	<script type="text/javascript">
-		document.addEventListener("DOMContentLoaded",()=>{
-			setTimeout(()=>{
+		document.addEventListener("DOMContentLoaded", () => {
+			setTimeout(() => {
 				document.body.classList.remove("loader")
-			},2000);
+			}, 2000);
 		})
 	</script>
 </body>

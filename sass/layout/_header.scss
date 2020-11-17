@@ -26,16 +26,8 @@
         grid-column: 1 / -1;
         z-index: 200;
         
-        background-color: transparentize(#000, 0.8%);
+        background-color: rgb(0, 0, 0,0.45);
     }
-
-   // UX - ?
-   /* &.is-search-h{
-        grid-template-rows: 70px 300px;
-        .h-m-content .formSearch{
-            display: none;
-        }
-    }*/
 
     @include mq(md){
         grid-template-rows: var(--height-nav-bar) minmax(200px,50vh);
@@ -187,16 +179,7 @@
                 margin: 0 15px;
             }
         }
-    } 
-
-    // @include mq(900px){
-    //     .search-bar{
-    //         .search-box--nav{
-    //             display: none;
-    //         }
-    //     }
-    // } 
-
+    }
 
     .btn-menu{
         margin: 10px;
@@ -218,7 +201,7 @@
     color: #fff;
     font-weight: normal;
     font-family: $font-main;
-    font-size: 2.7em;
+    font-size: 2.3em;
     line-height: 1;
     flex: 0 1 40%;
     max-width: 450px;
@@ -263,12 +246,10 @@
     align-items: center;
     flex-wrap: wrap;
 
-    /*background-color: transparentize(#fff, 0.7%);*/
-
 
     h1.slogan--title{
         font-family: $font-main;
-        font-size: 3em;
+        font-size: 2.85em;
         margin-bottom: 10px;
         @include mq_next(1220px){
             margin-bottom: 16px;

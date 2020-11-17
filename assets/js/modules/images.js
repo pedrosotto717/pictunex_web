@@ -3,9 +3,9 @@
  */
 import InterfaceApiPX from "./interface-api-px.js"
 
-export default class Images extends InterfaceApiPX{
+export default class Images extends InterfaceApiPX {
 
-	constructor(config){
+	constructor(config) {
 		super(config.url)
 		this.allImages = []
 		this.allCurrentImages = []
@@ -16,88 +16,89 @@ export default class Images extends InterfaceApiPX{
 		this.containerCategories = null
 	}
 
-	async initCategories(container,callback){
+	async initCategories(container, callback) {
 
 		let categories = {}
-		
-		if(typeof localStorage.getItem("CATEGORIES") === "string"){
+
+		if (typeof localStorage.getItem("CATEGORIES") === "string") {
 			categories = JSON.parse(localStorage.getItem("CATEGORIES"))
-		}else{
+		} else {
 			categories = await this.getCategories()
-			localStorage.setItem("CATEGORIES", JSON.stringify(categories))
+			if (categories != undefined)
+				localStorage.setItem("CATEGORIES", JSON.stringify(categories))
 		}
 
 		this.containerCategories = document.querySelector(container)
 		const $fragment = document.createDocumentFragment()
 
 		categories.categories.unshift("all")
-		
-		categories.categories.forEach( (el, index) => {
-			const $li = document.createElement("li"),
-				  $a = `<a class="categories" href="#${el}">${el}</a>`
 
-			if(index==0)
+		categories.categories.forEach((el, index) => {
+			const $li = document.createElement("li"),
+				$a = `<a class="categories" href="#${el}">${el}</a>`
+
+			if (index == 0)
 				$li.classList.add("btn--active-c")
 			$li.classList.add("btn-main")
 			$li.insertAdjacentHTML("beforeend", $a)
 			$li.style.color = "#000"
-			$li.setAttribute("data-numc",index)
+			$li.setAttribute("data-numc", index)
 			$fragment.appendChild($li)
 		});
 
 		this.containerCategories.appendChild($fragment)
 
-		if(typeof callback == "function")
+		if (typeof callback == "function")
 			callback(this.containerCategories)
 	}
 
 
-	initPagination(container, callback = null){
+	initPagination(container, callback = null) {
 
-		console.log(this.allImages,"this.all")
-		
+		console.log(this.allImages, "this.all")
+
 		const containerPagination = document.querySelector(container)
 		containerPagination.innerHTML = "";
 
-		if(this.allImages.length > 0){
+		if (this.allImages.length > 0) {
 			console.log("EXECUTE")
 
-			if(this.allImages.length == 1){
+			if (this.allImages.length == 1) {
 				containerPagination.innerHTML = "";
 				return 0
 			}
 
-			this.allImages.forEach( (el, index) => {
+			this.allImages.forEach((el, index) => {
 				const $li = document.createElement("li")
-				
-				$li.insertAdjacentHTML("beforeend",`
-					<a class="index-pag ${index==0 ? "active" : ""}" data-pag="${index}" href="#">${index+1}</a>
+
+				$li.insertAdjacentHTML("beforeend", `
+					<a class="index-pag ${index == 0 ? "active" : ""}" data-pag="${index}" href="#">${index + 1}</a>
 				`)
 
 				containerPagination.appendChild($li)
 			});
 
-			if(typeof callback == "function")
-				callback(containerPagination,this)
-		}else{
+			if (typeof callback == "function")
+				callback(containerPagination, this)
+		} else {
 			let acum = 1
 
-			const interval = setInterval(()=>{
-				console.log("setInterval",this.allImages,this.allImages.length)
-				if(this.allImages.length > 0){
+			const interval = setInterval(() => {
+				console.log("setInterval", this.allImages, this.allImages.length)
+				if (this.allImages.length > 0) {
 					console.log("finish Interval")
 					clearInterval(interval)
 					return this.initPagination(container, callback)
 				}
 
-				if(acum >= 5){
+				if (acum >= 5) {
 					containerPagination.innerHTML = "";
 					clearInterval(interval)
-				}else{
+				} else {
 					acum++
 				}
 
-			},2000);
+			}, 2000);
 		}
 	}
 
@@ -105,45 +106,45 @@ export default class Images extends InterfaceApiPX{
 	 * This Method is to Reset (gallery's container,the Images, Masonry Layout)
 	 */
 
-	loadCurrent(callback = null){
+	loadCurrent(callback = null) {
 		this.allCurrentImages = this.allImages[this.pag]
 		this.restartContainer()
 		this.insertInDOM(this.allCurrentImages)
 		this.runMasonry()
-		if(typeof callback == "function")
+		if (typeof callback == "function")
 			callback()
 	}
 
 	/**
 	 * Get All images 
 	 */
-	async loadAll(callback = null,reset = false){
-		
+	async loadAll(callback = null, reset = false) {
+
 		this.pag = 0
 
 
-		if(typeof sessionStorage.getItem("ALL_IMG") === "string"){
+		if (typeof sessionStorage.getItem("ALL_IMG") === "string") {
 			const res = JSON.parse(sessionStorage.getItem("ALL_IMG"))
-			if(typeof res === "object"){
+			if (typeof res === "object") {
 				this.allImages = res
 				this.allCurrentImages = this.allImages[this.pag]
 				console.log("LOCAL_STORAGE")
 			}
-		}else{
+		} else {
 			const res = await this.getAll()
-			if(res!=null && res.length > 0){
+			if (res != null && res.length > 0) {
 				this.allImages = res
 				this.allCurrentImages = this.allImages[this.pag]
-				sessionStorage.setItem("ALL_IMG",JSON.stringify(res))
+				sessionStorage.setItem("ALL_IMG", JSON.stringify(res))
 				console.log("NETWORK")
 			}
 		}
 
-		if(reset){
+		if (reset) {
 			this.restartContainer()
 			this.insertInDOM(this.allCurrentImages)
 			this.runMasonry()
-		}else{
+		} else {
 			this.insertInDOM(this.allCurrentImages)
 		}
 
@@ -151,44 +152,44 @@ export default class Images extends InterfaceApiPX{
 		this.pag = 0
 		this.initPagination(".pagination ul")
 
-		if(typeof callback == "function")
+		if (typeof callback == "function")
 			callback()
 	}
 
 	/**
 	 * Get images By Category
 	 */
-	async loadByCategory(category,callback = null, objAux = null){
+	async loadByCategory(category, callback = null, objAux = null) {
 
 		this.pag = 0
 
 
-		if(category.length == 0) return false
+		if (category.length == 0) return false
 
-		if(this.currentCategory != category){
+		if (this.currentCategory != category) {
 
-			if(category == "all"){
-				return this.loadAll(()=>{
+			if (category == "all") {
+				return this.loadAll(() => {
 					this.currentCategory = category
 					this.clearListCategories(objAux.num)
-				},true);
+				}, true);
 			}
 
-			if(typeof localStorage.getItem(category) === "string"){
+			if (typeof localStorage.getItem(category) === "string") {
 				const res = JSON.parse(localStorage.getItem(category))
-				if(typeof res === "object"){
+				if (typeof res === "object") {
 					console.log("LOCAL_STORAGE")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
 				}
-			}else{
+			} else {
 				const res = await this.getByCategory(category)
-				if(res!=null && res.length > 0){
+				if (res != null && res.length > 0) {
 					console.log("NETWORK")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
-					localStorage.setItem(category,JSON.stringify(res))
-				}else{
+					localStorage.setItem(category, JSON.stringify(res))
+				} else {
 					this.currentCategory = category
 					this.restartContainer()
 					this.allImages = []
@@ -204,49 +205,49 @@ export default class Images extends InterfaceApiPX{
 			this.restartContainer()
 			this.insertInDOM(this.allCurrentImages)
 			this.runMasonry()
-		
+
 			//reset pag to 0 
 			this.pag = 0
 			this.initPagination(".pagination ul")
 
-			if(typeof callback == "function")
+			if (typeof callback == "function")
 				callback()
 		}
-		
+
 	}
 
 
 	/**
 	 * Search
 	 */
-	async loadSearch(key, callback = null){
-		
+	async loadSearch(key, callback = null) {
+
 		this.pag = 0
 		console.log(key)
-		
-		if(key.length == 0) return false
-		key = key.replace(/[\@\#\\\-\¡\º\!\|*?¿+-+_+:;+=+>+<\{}\[\]\.+,+``´´\/\'\"\+^\¨]/gi,"")
+
+		if (key.length == 0) return false
+		key = key.replace(/[\@\#\\\-\¡\º\!\|*?¿+-+_+:;+=+>+<\{}\[\]\.+,+``´´\/\'\"\+^\¨]/gi, "")
 		key = key.toLowerCase()
 		console.log(key, " Despues")
 
 		this.clearListCategories()
-		
-		if(key != this.keyOldSearch){
-			if(typeof sessionStorage.getItem(key) === "string"){
+
+		if (key != this.keyOldSearch) {
+			if (typeof sessionStorage.getItem(key) === "string") {
 				const res = JSON.parse(sessionStorage.getItem(key))
-				if(typeof res === "object"){
+				if (typeof res === "object") {
 					console.log("LOCAL_STORAGE")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
 				}
-			}else{
+			} else {
 				const res = await this.search(key)
-				if(res!=null && res.length > 0){
+				if (res != null && res.length > 0) {
 					console.log("NETWORK")
 					this.allImages = res
 					this.allCurrentImages = this.allImages[this.pag]
-					sessionStorage.setItem(key,JSON.stringify(res))
-				}else{
+					sessionStorage.setItem(key, JSON.stringify(res))
+				} else {
 					this.keyOldSearch = ""
 					this.restartContainer()
 					this.allImages = []
@@ -255,20 +256,20 @@ export default class Images extends InterfaceApiPX{
 					return this.notFound(key)
 				}
 			}
-	
 
-			console.log("search :: ",this.allCurrentImages,this.allImages,this.pag)
+
+			console.log("search :: ", this.allCurrentImages, this.allImages, this.pag)
 			this.restartContainer()
 			this.insertInDOM(this.allCurrentImages)
 			this.runMasonry()
 			this.keyOldSearch = key
-	
+
 			//reset pag to 0 
 			this.pag = 0
 			this.initPagination(".pagination ul")
 
 
-			if(typeof callback == "function")
+			if (typeof callback == "function")
 				callback()
 		}
 	}
@@ -277,11 +278,11 @@ export default class Images extends InterfaceApiPX{
 	/**
 	 * Method to Insert Elements In DOM
 	 */
-	insertInDOM(arrElem){
+	insertInDOM(arrElem) {
 
 		console.log(arrElem)
 		const $fragment = document.createDocumentFragment()
-		arrElem.forEach( (el,index) => {
+		arrElem.forEach((el, index) => {
 			const $content = `<figure>
 							<img src="${el.src}" alt="${el.name} - Pixtunex Image">
 							<figcaption class="masonry-details">
@@ -304,7 +305,7 @@ export default class Images extends InterfaceApiPX{
 			$containerItem.insertAdjacentHTML('beforeend', $content)
 
 
-			$containerItem.querySelector(".masonry-details").setAttribute("data-imgobj",JSON.stringify( this.subObjectImg(el,index) ))
+			$containerItem.querySelector(".masonry-details").setAttribute("data-imgobj", JSON.stringify(this.subObjectImg(el, index)))
 			$fragment.appendChild($containerItem)
 		});
 		this.containerGallery.appendChild($fragment)
@@ -315,7 +316,7 @@ export default class Images extends InterfaceApiPX{
 	 * Methods Auxs
 	 */
 
-	subObjectImg(obj,id){
+	subObjectImg(obj, id) {
 		return {
 			name: obj.name,
 			nickname: obj.nickname,
@@ -325,22 +326,22 @@ export default class Images extends InterfaceApiPX{
 		}
 	}
 
-	parseCategories(categories){
+	parseCategories(categories) {
 		return categories.split(",")
 	}
 
-	restartContainer(){
+	restartContainer() {
 		this.containerGallery.innerHTML = ""
 		this.containerGallery.classList.remove("active")
 	}
 
-	runMasonry(){
-		setTimeout(()=>{
-	    	msr('.masonry-layout', '.masonry-item', 100)
-		},1000)
+	runMasonry() {
+		setTimeout(() => {
+			msr('.masonry-layout', '.masonry-item', 100)
+		}, 1000)
 	}
 
-	notFound(key,callback = null){
+	notFound(key, callback = null) {
 		const msg = `<div class="no-coincidence">
 						<p>No Coincidence with "<span>${key}</span>"</p>
 					</div>`
@@ -348,17 +349,17 @@ export default class Images extends InterfaceApiPX{
 		this.containerGallery.innerHTML = msg
 		sessionStorage.setItem("CURRENT_PAG", 0)
 
-		if(typeof callback == "function")
+		if (typeof callback == "function")
 			callback()
 	}
 
-	clearListCategories(n = null){
-		
-		if(this.containerCategories.querySelector('.btn--active-c') != null)
-			this.containerCategories.querySelector('.btn--active-c').classList.remove("btn--active-c") 
+	clearListCategories(n = null) {
 
-		if(n != null)
-			this.containerCategories.querySelector(`[data-numc="${n}"]`).classList.add("btn--active-c") 
+		if (this.containerCategories.querySelector('.btn--active-c') != null)
+			this.containerCategories.querySelector('.btn--active-c').classList.remove("btn--active-c")
+
+		if (n != null)
+			this.containerCategories.querySelector(`[data-numc="${n}"]`).classList.add("btn--active-c")
 		else
 			this.currentCategory = " "
 	}

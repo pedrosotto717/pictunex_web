@@ -9,15 +9,12 @@ const handlerRoutes = ( () => {
     const handler = async function(route,toHome){
 
         if(routes.includes(route)){
-            // console.log("hash",route)
-            // console.info("admin::",admin)
-            // console.log("__CTRL__",route,controllers,controllers[route])
             controllers[route](containerMain)
         }else if(route == "/" || route == "" || toHome === true){
             controllers["/home"](containerMain)
         }else if(toHome===false){
             //Not Found
-            controllers["NOT_FOUND"]()
+            controllers["NOT_FOUND"](containerMain)
         }
     }
 

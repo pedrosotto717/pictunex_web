@@ -22,7 +22,7 @@
 
 :root{
 	--bgc: #00C294; /*#00C294*/
-	--tamLineHam: 3px;
+	--tamLineHam: 2px;
 }
 
 //Color 
@@ -57,7 +57,7 @@ $color: $enf-color;
 	width: 30px;
 	height: var( --tamLineHam );
 	background-color: $color;
-	border-radius: 0px;
+	border-radius: 0;
 	transition: 0.1s all ease;
 }
 
@@ -69,7 +69,7 @@ $color: $enf-color;
 	height: var( --tamLineHam );
 	background-color: $color;
 	margin-top: -10px;
-	border-radius: 0px;
+	border-radius: 0;
 	transform-origin: 50% center;
 	transition: all 0.3s 0.01s;
 }

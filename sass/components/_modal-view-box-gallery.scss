@@ -9,17 +9,16 @@
 	min-height: 100vh;
 	background-color: rgba(0, 0, 0, 0.7);
 	z-index: 849;
-	overflow-y: auto;
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.25s linear 0.3s;
+	transition: all 0.25s linear 0.35s;
 	
 	&.active{
-		transition: all 0.35s linear 0s;
+		transition: all 0.3s linear 0s;
 		opacity: 1;
 		visibility: visible;
 		.modal-gallery{
-			transition: all 0.4s ease 0.5s;
+			transition: all 0.55s ease 0.5s;
 			transform: translateY(0);
 		}
 	}
@@ -30,6 +29,7 @@
 		position: absolute;
 		top: 10px;
 		right: 20px;
+		bottom: 50px;
 
 		@include mq(xl){
 			top: 5vh;
@@ -37,8 +37,13 @@
 		}
 
 		@include mq(md){
+			overflow-y: scroll;
 			top: 10px;
 			right: 10px;
+
+			.modal-gallery{
+				overflow-y: scroll;
+			}
 		}
 	}
 }
@@ -56,15 +61,14 @@
 	background-color: rgb(255, 255, 255);
 	z-index: 850;
 	margin: 50px auto;
-	/*overflow: hidden;*/
 	transform: translateY(-150%);
-	transition: all 0.3s ease 0s;
+	transition: all 0.35s ease 0.1s;
 
 	
 
 	display: grid;
 	grid-template-columns: 0.5fr 2fr 0.5fr;
-	grid-template-rows: 60px minmax(300px,1fr) 50px;
+	grid-template-rows: 60px minmax(300px,1fr) 70px;
 	grid-template-areas: "info info info"
 						 "none img none1"
 						 "categories categories categories";
@@ -75,7 +79,7 @@
 
 	@include mq(md){
 		grid-template-columns: 30px 1fr 30px;
-		grid-template-rows: 50px minmax(300px,1fr) 40px;
+		grid-template-rows: 50px minmax(300px,1fr) 50px;
 		width: 92vw;
 	}
 
@@ -182,34 +186,36 @@
 			display: flex;
 			-ms-align-items: center;
 			align-items: center;
+			flex-wrap: wrap;
+
 
 			li{
 				display: inline-flex;
-				margin: 0 10px;
-				/*min-height: 40px;*/
-				/*min-width: 100px;*/
+				margin: 8px 5px;
 
-				a{
+				.link-category{
 					display: flex;
 					width: 100%;
 					height: 100%;
 					font-family: $font-second;
 					color: #000;
-					padding: 10px;
-					font-size: 1.2em;
+					padding: 0.65rem;
+					font-size: 1em;
 					box-shadow: 0 0 1px 0 #000;
+					position: relative;
+					z-index: 10;
+					background: transparent;	
+
 					@include mq(lg){
 						font-size: 1em;
 					}
-				}
-/*
-				&:hover{
-					text-decoration: underline;
-					a{
-						box-shadow: 0 0 0 0 #000;
-						background-color: $enf-color-overlay;
+
+					&::before{
+						z-index: -1;
+						min-height: 110%;
 					}
-				}*/
+				
+				}
 			}
 		}
 	}

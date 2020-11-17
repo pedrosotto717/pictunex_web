@@ -155,3 +155,10 @@ img {
 a {
   text-decoration: none;
 }
+
+
+textarea:invalid{
+  box-shadow: none;
+  outline: none;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}

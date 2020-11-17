@@ -113,10 +113,10 @@ addEventListener("load", ev => {
         el.classList.remove("notification")
         el.classList.remove("Error")
       });
-      Msg.showMsg("OK")
+      Msg.showMsg("Successful registered user","success")
 
     }else{
-      Msg.showMsg("ERROR")
+      Msg.showMsg("ERROR","error")
     }
 
   });

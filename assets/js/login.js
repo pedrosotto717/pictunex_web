@@ -3,20 +3,18 @@ const login = {
 
   containerModalRedirect: ".modal_container",
 
-	async auth(form){
+  async auth(form) {
 
-		const username = form.querySelector("#username"),
-		  password = form.querySelector("#password")
+    const username = form.querySelector("#username"),
+      password = form.querySelector("#password")
 
     const passwordC = await crypter.sha256(password.value),
-          user = crypter.base64Enc( username.value + ":" + passwordC ),
-          headers = new Headers()
+      user = crypter.base64Enc(username.value + ":" + passwordC),
+      headers = new Headers()
 
-    headers.append("AUTHENTICATION",user)
-
-    // console.log(newUser)
-    // console.log(json_enc)
-    // console.log( JSON.parse( crypter.base64Dec(json_enc)) )
+    headers.append("host", "localhost")
+    headers.append("AUTHENTICATION", user)
+    console.log(user)
 
     const res = await fetch(config.getURL_API() + "/auth/token", {
       method: "POST",
@@ -26,36 +24,30 @@ const login = {
     if (res.status === 200) {
       const resParse = await res.json()
       console.log(resParse);
-      localStorage.setItem("ACCESS_TOKEN", resParse.access_token );
+      localStorage.setItem("ACCESS_TOKEN", resParse.access_token);
       return true;
-    }else {
+    } else if (res.status === 500) {
+      return 500;
+    } else {
       return false;
     }
+  },
 
-
-	},
-
-	validateForm(form){
-    return false;
-	},
-
-  async isRedirect(){
+  async isRedirect() {
     const access_token = await auth.verifyToken(false)
 
-    if(access_token.code === 200){
-      console.log("___::200")
-      Msg.showMsg("REDIRECT")
+    if (access_token.code === 200) {
+      Msg.showMsg("Already Session Active", "info")
 
-      setTimeout(()=>{
-        location.href = location.href.replace("login.html","dashboard")
+      setTimeout(() => {
+        location.href = "./dashboard"
         return true;
-      },5000);
+      }, 5000);
 
-    }else if(access_token.code === 401){
-      console.log("___::401")
+    } else if (access_token.code === 401) {
       localStorage.clear()
       return false;
-    }else{
+    } else {
       localStorage.clear()
       return false;
     }
@@ -63,42 +55,55 @@ const login = {
 }
 
 
-addEventListener("load",()=>{
+addEventListener("load", () => {
 
   login.isRedirect()
 
-	document.querySelector("#login-px").addEventListener("submit",async ev => {
-		ev.preventDefault()
-    
-    const session = await login.isRedirect()
-    console.table("SSESION FINAL____",session)
-    // const val = login.validateForm(ev.target);
-    if(session==false){
-      login.auth(ev.target)
-      .then(res=>{
-        if(res===true){
-          location.href = location.href.replace("login.html","dashboard")
-        }else{
-          console.log("USER && PASWORD __INVALID__")
-        }
-      })
-    }
-		
-	});
+  document.querySelector("#login-px").addEventListener("submit", async ev => {
+    ev.preventDefault()
 
-  setInterval(()=>{
+    const session = await login.isRedirect()
+    console.table("SSESION FINAL____", session)
+
+    if (session == false) {
+
+      login.auth(ev.target)
+        .then(res => {
+
+          if(res===true)
+            location.href = "./dashboard"
+          else if(res == 500){
+            Msg.showMsg("500 Internal Error","error", ()=>{
+              ev.target.reset()
+              username.focus()
+            });
+          }else
+          Msg.showMsg("User Or Password Invalid","error", ()=>{
+              ev.target.reset()
+              username.focus()
+            });
+
+        });
+
+    } else {
+      window.location.reload()
+    }
+
+  });
+
+  setInterval(() => {
     login.isRedirect()
-  },15000);
+  }, 15000);
 
 
   document.querySelector("#login-px").addEventListener("change", ev => {
-    if(ev.target.matches("input")){
+    if (ev.target.matches("input")) {
       ev.target.classList.add("notification")
     }
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     document.querySelector(".login").classList.add("active")
-  },500)
+  }, 700)
 
 });

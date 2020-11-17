@@ -16,7 +16,6 @@
     grid-gap: var(--g-gap);
 
     &.active{
-        /*grid-auto-rows: 75px;*/
         .masonry-item{
             transform: scale(1);
         }

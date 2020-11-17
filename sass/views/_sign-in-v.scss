@@ -97,8 +97,8 @@ body{
 
 
 		@include mq_next(1200px){
-			font-size: 22px;
-			padding-left: 2em;
+			font-size: 21px;
+			padding-left: 1.9em;
 		}
 
 		@include mq(lg){

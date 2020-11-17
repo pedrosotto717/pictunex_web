@@ -76,8 +76,6 @@
 }
 
 
-
-
 .controller-container-h{
   position: relative;
   display: flex;
@@ -85,7 +83,6 @@
   -ms-align-items: center;
   align-items: center;
   padding: 5px;
-  /*overflow: hidden;*/
 
   ul{
     scroll-behavior: smooth;
@@ -93,7 +90,6 @@
 
   .btn-c{
     transition: all $transition-global;
-    /*position: absolute;*/
     min-height: 45px;
     height: 1em;
     min-width: 45px;
