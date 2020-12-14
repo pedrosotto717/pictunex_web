@@ -1,5 +1,4 @@
 .modal{
-	/*display: none;*/
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -19,6 +18,7 @@
 		opacity: 1;
 		visibility: visible;
 		overflow: auto;
+
 		.modal-gallery{
 			transition: all 0.55s ease 0.5s;
 			transform: translateY(0);
@@ -39,12 +39,12 @@
 		}
 
 		@include mq(md){
-			overflow-y: scroll;
+			overflow-y: auto;
 			top: 10px;
 			right: 10px;
 
 			.modal-gallery{
-				overflow-y: scroll;
+				overflow-y: auto;
 			}
 		}
 	}
@@ -66,8 +66,6 @@
 	transform: translateY(-150%);
 	transition: all 0.35s ease 0.1s;
 
-	
-
 	display: grid;
 	grid-template-columns: 0.5fr 2fr 0.5fr;
 	grid-template-rows: 60px minmax(300px,1fr) 70px;
@@ -81,7 +79,7 @@
 
 	@include mq(md){
 		grid-template-columns: 30px 1fr 30px;
-		grid-template-rows: 50px minmax(300px,1fr) 50px;
+		grid-template-rows: 50px minmax(300px,1fr) auto;
 		width: 92vw;
 	}
 
@@ -89,8 +87,6 @@
 		top: 20px;
 		min-height: 400px;
 	}
-
-
 
 	.view-box-img{
 		grid-area: img;
@@ -125,10 +121,10 @@
 			padding: 5px;
 			margin-top: 5px;
 			margin-left: 5px;
+
 			span{
 				margin: 2px;
 			}
-
 			.username{
 				font-family: $font-second;
 			}
@@ -151,9 +147,7 @@
 				padding: 0 !important;
 				transition: $transition-global;
 
-				&:hover{
-                    background-color: darken($enf-color-overlay,10%) !important;
-				}
+				&:hover{	background-color: darken($enf-color-overlay,10%) !important;}
 
 				span{
 					margin: 0;
@@ -274,5 +268,7 @@
 		}
 
 	}
+
+	margin-bottom: 100px;
 }
 

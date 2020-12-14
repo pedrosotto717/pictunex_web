@@ -2,6 +2,7 @@
 
 import admin from "./admin.js";
 
+
 const controllers = {
 
     // container: document.getElementById("content"),
@@ -452,7 +453,7 @@ const controllers = {
         localStorage.clear()
         sessionStorage.clear()
         location.href = "../login.html"
-        if (opener != null)
+        if (opener !== null)
             opener.location.reload()
     },
 
@@ -804,7 +805,7 @@ const controllers = {
                 .then(res => {
                     if (res === true) {
                         Msg.showMsg("Profile Saved Successfully", "success", () => {
-                            // location.reload()
+                            location.reload()
                         });
 
                     } else

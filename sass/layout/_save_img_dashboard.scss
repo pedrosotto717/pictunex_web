@@ -15,36 +15,34 @@ $index: 1100;
 	visibility: hidden;
 	display: grid;
 	justify-items: center;
-	-ms-align-items: center;
 	align-items: center;
 	background-color: rgba(0, 0, 0, 0.6);
 	transition: all 0.25s linear 0.45s;
+	overflow: auto;
 
-
+	
 	#save_image{
 		position: relative;
 		width: 800px;
-		min-width: 400px;
+		min-width: 380px;
 		min-height: 450px;
-		top: 0;
-		margin-top: 10vh;
+		top: 10vh;
 		transition: all 0.3s ease-in-out 0s;
 		display: grid;
 		grid-gap: 5px;
-
+		
 		background-color: #fff;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 280px 1fr 55px;
 		grid-template-areas: "left right"
-							 "prebottom prebottom"
-							 "bottom1 bottom2";
-
+		"prebottom prebottom"
+		"bottom1 bottom2";
+		
 		box-shadow: 0 0 10px 0 #000;
 		transform: translate3d(0,-100vh,0);
 		transition: all 0.45s ease 0s;
-
-		margin-bottom: 
-
+		margin-bottom: 85px;
+		overflow: auto;
 
 		.box-selection{
 			grid-area: left;
@@ -76,7 +74,7 @@ $index: 1100;
 			}
 
 			&::before{
-				content: "Choise Image";
+				content: "Change Image";
 				position: absolute;
 				bottom: 0;
 				left: 0;
@@ -209,7 +207,6 @@ $index: 1100;
 		}
 	}
 
-
 	@include mq(900px){
 		#save_image{
 			width: 90vw;
@@ -221,8 +218,10 @@ $index: 1100;
 	@include mq(md){
 		#save_image{
 			width: 92vw;
-			top: 70px;
-			margin: 10vh 0;
+			top: 80px;
+			margin: 0;
+			margin-top: 160px;
+			margin-bottom: 100px !important;
 			margin-right: 1vw;
 
 			grid-template-rows: 200px 1fr auto 55px;

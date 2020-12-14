@@ -99,7 +99,7 @@ addEventListener("load", ev => {
     //Invoco para el registro
     const result = SignIn.register(ev.target);
 
-    if (result) {
+    if (result === true) {
 
       ev.target.reset()
       const inputs = [...document.querySelectorAll("input[type='text']")]
